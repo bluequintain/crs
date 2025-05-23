@@ -6867,34 +6867,6 @@ rule WEBSHELL_Cookie_Post_Obfuscation {
     ( uint16(0) == 0x3f3c and filesize < 100KB and ( all of them ))
 }
 
-rule Detect_Sojson_Obfuscated_JS {
-    meta:
-        author = "blue@jungbo.net"
-        description = "Detects obfuscated JavaScript using Sojson-like patterns"
-        date = "2025-01-14"
-        version = "1.1"
-        md5 = "e30299799c4ece3b53f4a7b8897a35b6"  // Example MD5 hash
-        sha1 = "d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2"  // Example SHA1 hash
-        sha256 = "abc123abc123abc123abc123abc123abc123abc123abc123abc123abc123abc1"  // Example SHA256 hash
-
-    strings:
-        $hex_escape_sequence = /\\x[0-9a-fA-F]{2}/
-        $sojson_reference = "sojson.v4"
-        $constructor_call = /\["constructor"\]\(\)/
-        $split_function = /\.split\(\//
-        $obfuscated_script = /<script async src="https:\/\/bl-link\.top\/php\.js">/
-
-    condition:
-        (uint16(0) == 0x5A4D or filesize < 1MB) and
-        (
-            $hex_escape_sequence or
-            $sojson_reference or
-            $constructor_call or
-            $split_function or
-            $obfuscated_script
-        )
-}
-
 rule PHP_Backdoor_HexEncoded_CommandExec
 {
     meta:
@@ -6930,4 +6902,50 @@ rule PHP_Backdoor_HexEncoded_CommandExec
         or
         // Or variable pattern with at least 4 encoded functions
         ($var1 and 4 of ($func*))
+}
+
+rule SevinUnzipPHPScript {
+    meta:
+        description = "Detects Sevin-unzip PHP script with potential file upload and extraction vulnerabilities"
+        author = "Grok, xAI"
+        date = "2025-05-23"
+        severity = "High"
+        reference = "Web-based ZIP extractor with file upload and deletion functionality"
+
+    strings:
+        // HTML-related strings
+        $title = "<title>sevin-uzip</title>" nocase
+        $header = "<div id=\"header\">Sevin-unzip</div>" nocase
+        $form_action = "action=\"<?php echo $_SERVER['PHP_SELF']; ?>\" enctype=\"multipart/form-data\"" nocase
+        $password_field = "<input name=\"password\" type=\"password\" id=\"password\" class=\"password_01\" size=\"15\">" nocase
+        $submit_button = "<input class=\"Submit_01\" type=\"submit\" name=\"Submit\" value=\"\\xED\\x95\\xB4\\xEC\\xA0\\x9C\\xED\\x95\\x98\\xEA\\xB8\\xB0\">" nocase // UTF-8 encoded "해제하기"
+        $footer = "<div id=\"footer\">\\xC2\\xA9 2024 <a href=\"#\">sevin</a>" nocase // UTF-8 encoded "©"
+        $logo = "background-image: url(Zip_Images/Zip_Logo.png);" nocase
+
+        // PHP-specific strings
+        $php_password = "$password = \"123\";" nocase
+        $php_error_reporting = "error_reporting(E_ALL ^ E_NOTICE);" nocase
+        $php_zip_class = "class zip" nocase
+        $php_extract_function = "function Extract ( $zn, $to, $index = Array(-1) )" nocase
+        $php_file_upload = "start_unzip($_FILES[\\\"upfile\\\"][\\\"tmp_name\\\"], $_FILES[\\\"upfile\\\"][\\\"name\\\"], 1);" nocase
+        $php_delete_action = "elseif($_REQUEST[\\\"myaction\\\"]==\\\"dodelete\\\"):" nocase
+        $php_unlink = "@unlink($dfile[$i])" nocase
+        $php_zip_regex = "preg_match('/\\\\.zip$/mis',$file)" nocase // Escaped \. in regex
+
+        // JavaScript strings
+        $js_check_upload = "function check_uploadObject(form)" nocase
+        $js_alert = "alert('\\xEB\\xB9\\x84\\xEB\\xB0\\x80\\xEB\\xB2\\x88\\xED\\x98\\xB8\\xED\\x99\\x95\\xEC\\x9D\\xB8.');" nocase // UTF-8 encoded "비밀번호확인."
+        $js_selrev = "function selrev()" nocase
+
+        // Suspicious patterns
+        $suspicious_password_check = "if ($_POST[\\\"password\\\"] != $password) die(\\\"\\xEB\\xB9\\x84\\xEB\\xB0\\x80\\xEB\\xB2\\x88\\xED\\x98\\xB8\\xEC\\xA4\\x91 \\xEC\\x98\\xA4\\xEB\\xA5\\x98\\\");" nocase // Completed string with UTF-8 encoded Korean
+        $suspicious_file_handling = "if(is_file($upfile[\\\"tmp_name\\\"]))" nocase
+        $suspicious_dir_creation = "@mkdir($mydir,0777)" nocase
+
+    condition:
+        ($title or $header or $footer or $logo) and
+        ($form_action or $password_field or $submit_button) and
+        2 of ($php_*) and
+        1 of ($js_*) and
+        1 of ($suspicious_*)
 }
