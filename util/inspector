@@ -2,7 +2,7 @@
 
 WEBSHELL_RULES="/usr/httpd/conf/crs/util/core.yar"
 YARA_CMD="/usr/bin/yara"
-LOG_FILE="/var/log/modsec_yara.log"
+LOG_FILE="/var/log/yara.log"
 
 if [ "$#" -ne 1 ]; then
     echo "1"
