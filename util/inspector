@@ -1,31 +1,28 @@
 #!/bin/bash
 
-# Paths to YARA rule files
 WEBSHELL_RULES="/usr/httpd/conf/crs/util/core.yar"
 YARA_CMD="/usr/bin/yara"
+LOG_FILE="/var/log/modsec_yara.log"
 
-# Check if a file path is provided
 if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <file_path>"
-    exit 1
+    echo "1"
+    echo "$(date '+%F %T') usage error" >> "$LOG_FILE"
+    exit 0
 fi
 
 FILE_PATH="$1"
 
-# Run YARA command
-OUTPUT=$($YARA_CMD "$WEBSHELL_RULES" "$FILE_PATH" 2>/dev/null)
+OUTPUT=$("$YARA_CMD" "$WEBSHELL_RULES" "$FILE_PATH" 2>&1)
 EXIT_CODE=$?
 
-# Get current timestamp
-TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
-
-# Prepare log message
-if [ "$EXIT_CODE" -eq 0 ]; then
-    if [ -n "$OUTPUT" ]; then
-        echo "0 : malware detected"
-    else
-        echo "1 : clean file"
-    fi
+if [ "$EXIT_CODE" -eq 0 ] && [ -n "$OUTPUT" ]; then
+    echo "1"
+    echo "$(date '+%F %T') malware detected: $FILE_PATH :: $OUTPUT" >> "$LOG_FILE"
+elif [ "$EXIT_CODE" -eq 0 ]; then
+    echo "0"
 else
-    echo "0 : scan error"
+    echo "1"
+    echo "$(date '+%F %T') yara scan error: $FILE_PATH :: $OUTPUT" >> "$LOG_FILE"
 fi
+
+exit 0
