@@ -1,28 +1,25 @@
 #!/bin/bash
-
 WEBSHELL_RULES="/usr/httpd/conf/crs/util/core.yar"
 YARA_CMD="/usr/bin/yara"
 LOG_FILE="/var/log/yara.log"
 
 if [ "$#" -ne 1 ]; then
-    echo "1"
+    echo "0"   # 인자 오류 → 차단(fail-closed). 통과시키려면 "1"
     echo "$(date '+%F %T') usage error" >> "$LOG_FILE"
     exit 0
 fi
 
 FILE_PATH="$1"
-
 OUTPUT=$("$YARA_CMD" "$WEBSHELL_RULES" "$FILE_PATH" 2>&1)
 EXIT_CODE=$?
 
 if [ "$EXIT_CODE" -eq 0 ] && [ -n "$OUTPUT" ]; then
-    echo "1"
+    echo "0"   # 악성코드 탐지 → 차단
     echo "$(date '+%F %T') malware detected: $FILE_PATH :: $OUTPUT" >> "$LOG_FILE"
 elif [ "$EXIT_CODE" -eq 0 ]; then
-    echo "0"
+    echo "1"   # 정상 → 통과
 else
-    echo "1"
+    echo "0"   # 스캔 오류 → 차단(fail-closed). 통과시키려면 "1"
     echo "$(date '+%F %T') yara scan error: $FILE_PATH :: $OUTPUT" >> "$LOG_FILE"
 fi
-
 exit 0
