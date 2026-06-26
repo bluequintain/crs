@@ -80,331 +80,329 @@ False positives in 8gb of common webapps plus yara-ci: 2
 
 */
 
-rule EXT_WEBSHELL_PHP_Generic {
-   meta:
-      description = "php webshell having some kind of input and some kind of payload. restricted to small files or big ones including suspicious strings"
-      license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
-      author = "Arnim Rupp (https://github.com/ruppde)"
-      reference = "Internal Research"
-      score = 70
-      date = "2021-01-14"
-      modified = "2026-03-09"
-      hash = "bee1b76b1455105d4bfe2f45191071cf05e83a309ae9defcf759248ca9bceddd"
-      hash = "6bf351900a408120bee3fc6ea39905c6a35fe6efcf35d0a783ee92062e63a854"
-      hash = "e3b4e5ec29628791f836e15500f6fdea19beaf3e8d9981c50714656c50d3b365"
-      hash = "00813155bf7f5eb441e1619616a5f6b21ae31afc99caa000c4aafd54b46c3597"
-      hash = "e31788042d9cdeffcb279533b5a7359b3beb1144f39bacdd3acdef6e9b4aff25"
-      hash = "36b91575a08cf40d4782e5aebcec2894144f1e236a102edda2416bc75cbac8dd"
-      hash = "a34154af7c0d7157285cfa498734cfb77662edadb1a10892eb7f7e2fb5e2486c"
-      hash = "791a882af2cea0aa8b8379791b401bebc235296858266ddb7f881c8923b7ea61"
-      hash = "9a8ab3c225076a26309230d7eac7681f85b271d2db22bf5a190adbf66faca2e6"
-      hash = "0d3ee83adc9ebf8fb1a8c449eed5547ee5e67e9a416cce25592e80963198ae23"
-      hash = "3d8708609562a27634df5094713154d8ca784dbe89738e63951e12184ff07ad6"
-      hash = "70d64d987f0d9ab46514abcc868505d95dbf458387f858b0d7580e4ee8573786"
-      hash = "259b3828694b4d256764d7d01b0f0f36ca0526d5ee75e134c6a754d2ab0d1caa"
-      hash = "04d139b48d59fa2ef24fb9347b74fa317cb05bd8b7389aeb0a4d458c49ea7540"
-      hash = "58d0e2ff61301fe0c176b51430850239d3278c7caf56310d202e0cdbdde9ac3f"
-      hash = "731f36a08b0e63c63b3a2a457667dfc34aa7ff3a2aee24e60a8d16b83ad44ce2"
-      hash = "e4ffd4ec67762fe00bb8bd9fbff78cffefdb96c16fe7551b5505d319a90fa18f"
-      hash = "fa00ee25bfb3908808a7c6e8b2423c681d7c52de2deb30cbaea2ee09a635b7d4"
-      hash = "98c1937b9606b1e8e0eebcb116a784c9d2d3db0039b21c45cba399e86c92c2fa"
-      hash = "e9423ad8e51895db0e8422750c61ef4897b3be4292b36dba67d42de99e714bff"
-      hash = "7a16311a371f03b29d5220484e7ecbe841cfaead4e73c17aa6a9c23b5d94544d"
-      hash = "7ca5dec0515dd6f401cb5a52c313f41f5437fc43eb62ea4bcc415a14212d09e9"
-      hash = "3de8c04bfdb24185a07f198464fcdd56bb643e1d08199a26acee51435ff0a99f"
-      hash = "63297f8c1d4e88415bc094bc5546124c9ed8d57aca3a09e36ae18f5f054ad172"
-      hash = "a09dcf52da767815f29f66cb7b03f3d8c102da5cf7b69567928961c389eac11f"
-      hash = "d9ae762b011216e520ebe4b7abcac615c61318a8195601526cfa11bbc719a8f1"
-      hash = "dd5d8a9b4bb406e0b8f868165a1714fe54ffb18e621582210f96f6e5ae850b33"
-      id = "ce3c93a5-3088-5e7e-a0d4-8bea18cf9cc3"
-   strings:
-      $wfp_tiny1 = "escapeshellarg" fullword
-      $wfp_tiny2 = "addslashes" fullword
+rule WEBSHELL_PHP_Generic
+{
+    meta:
+        description = "php webshell having some kind of input and some kind of payload. restricted to small files or big ones inclusing suspicious strings"
+        license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
+        author = "Arnim Rupp (https://github.com/ruppde)"
+        reference = "Internal Research"
+        score = 75
+        date = "2021/01/14"
+        modified = "2023-09-18"
+        hash = "bee1b76b1455105d4bfe2f45191071cf05e83a309ae9defcf759248ca9bceddd"
+        hash = "6bf351900a408120bee3fc6ea39905c6a35fe6efcf35d0a783ee92062e63a854"
+        hash = "00813155bf7f5eb441e1619616a5f6b21ae31afc99caa000c4aafd54b46c3597"
+        hash = "e31788042d9cdeffcb279533b5a7359b3beb1144f39bacdd3acdef6e9b4aff25"
+        hash = "36b91575a08cf40d4782e5aebcec2894144f1e236a102edda2416bc75cbac8dd"
+        hash = "a34154af7c0d7157285cfa498734cfb77662edadb1a10892eb7f7e2fb5e2486c"
+        hash = "791a882af2cea0aa8b8379791b401bebc235296858266ddb7f881c8923b7ea61"
+        hash = "9a8ab3c225076a26309230d7eac7681f85b271d2db22bf5a190adbf66faca2e6"
+        hash = "0d3ee83adc9ebf8fb1a8c449eed5547ee5e67e9a416cce25592e80963198ae23"
+        hash = "3d8708609562a27634df5094713154d8ca784dbe89738e63951e12184ff07ad6"
+        hash = "70d64d987f0d9ab46514abcc868505d95dbf458387f858b0d7580e4ee8573786"
+        hash = "259b3828694b4d256764d7d01b0f0f36ca0526d5ee75e134c6a754d2ab0d1caa"
+        hash = "04d139b48d59fa2ef24fb9347b74fa317cb05bd8b7389aeb0a4d458c49ea7540"
+        hash = "58d0e2ff61301fe0c176b51430850239d3278c7caf56310d202e0cdbdde9ac3f"
+        hash = "731f36a08b0e63c63b3a2a457667dfc34aa7ff3a2aee24e60a8d16b83ad44ce2"
+        hash = "e4ffd4ec67762fe00bb8bd9fbff78cffefdb96c16fe7551b5505d319a90fa18f"
+        hash = "fa00ee25bfb3908808a7c6e8b2423c681d7c52de2deb30cbaea2ee09a635b7d4"
+        hash = "e9423ad8e51895db0e8422750c61ef4897b3be4292b36dba67d42de99e714bff"
+        hash = "7a16311a371f03b29d5220484e7ecbe841cfaead4e73c17aa6a9c23b5d94544d"
+        hash = "3de8c04bfdb24185a07f198464fcdd56bb643e1d08199a26acee51435ff0a99f"
+        hash = "a09dcf52da767815f29f66cb7b03f3d8c102da5cf7b69567928961c389eac11f"
+        hash = "d9ae762b011216e520ebe4b7abcac615c61318a8195601526cfa11bbc719a8f1"
 
-      //strings from private rule php_false_positive_tiny
-      // try to use only strings which would be flagged by themselves as suspicious by other rules, e.g. eval
-      //$gfp_tiny1 = "addslashes" fullword
-      //$gfp_tiny2 = "escapeshellarg" fullword
-      $gfp_tiny3 = "include \"./common.php\";"  // xcache
-      $gfp_tiny4 = "assert('FALSE');"
-      $gfp_tiny5 = "assert(false);"
-      $gfp_tiny6 = "assert(FALSE);"
-      $gfp_tiny7 = "assert('array_key_exists("
-      $gfp_tiny8 = "echo shell_exec($aspellcommand . ' 2>&1');"
-      $gfp_tiny9 = "throw new Exception('Could not find authentication source with id ' . $sourceId);"
-      $gfp_tiny10 = "return isset( $_POST[ $key ] ) ? $_POST[ $key ] : ( isset( $_REQUEST[ $key ] ) ? $_REQUEST[ $key ] : $default );"
-      $gfp_tiny11 = "; This is the recommended, PHP 4-style version of the php.ini-dist file"
+        id = "294ce5d5-55b2-5c79-b0f8-b66f949efbb2"
+    strings:
+        $wfp_tiny1 = "escapeshellarg" fullword
+        $wfp_tiny2 = "addslashes" fullword
 
-      //strings from private rule capa_php_old_safe
-      $php_short = "<?" wide ascii
-      // prevent xml and asp from hitting with the short tag
-      $no_xml1 = "<?xml version" nocase wide ascii
-      $no_xml2 = "<?xml-stylesheet" nocase wide ascii
-      $no_asp1 = "<%@LANGUAGE" nocase wide ascii
-      $no_asp2 = /<script language="(vb|jscript|c#)/ nocase wide ascii
-      $no_pdf = "<?xpacket"
+        //strings from private rule php_false_positive_tiny
+        // try to use only strings which would be flagged by themselves as suspicious by other rules, e.g. eval
+        //$gfp_tiny1 = "addslashes" fullword
+        //$gfp_tiny2 = "escapeshellarg" fullword
+        $gfp_tiny3 = "include \"./common.php\";" // xcache
+        $gfp_tiny4 = "assert('FALSE');"
+        $gfp_tiny5 = "assert(false);"
+        $gfp_tiny6 = "assert(FALSE);"
+        $gfp_tiny7 = "assert('array_key_exists("
+        $gfp_tiny8 = "echo shell_exec($aspellcommand . ' 2>&1');"
+        $gfp_tiny9 = "throw new Exception('Could not find authentication source with id ' . $sourceId);"
+        $gfp_tiny10= "return isset( $_POST[ $key ] ) ? $_POST[ $key ] : ( isset( $_REQUEST[ $key ] ) ? $_REQUEST[ $key ] : $default );"
 
-      // of course the new tags should also match
-      // already matched by "<?"
-      $php_new1 = /<\?=[^?]/ wide ascii
-      $php_new2 = "<?php" nocase wide ascii
-      $php_new3 = "<script language=\"php" nocase wide ascii
+        //strings from private rule capa_php_old_safe
+        $php_short = "<?" wide ascii
+        // prevent xml and asp from hitting with the short tag
+        $no_xml1 = "<?xml version" nocase wide ascii
+        $no_xml2 = "<?xml-stylesheet" nocase wide ascii
+        $no_asp1 = "<%@LANGUAGE" nocase wide ascii
+        $no_asp2 = /<script language="(vb|jscript|c#)/ nocase wide ascii
+        $no_pdf = "<?xpacket"
 
-      //strings from private rule capa_php_input
-      $inp1 = "php://input" wide ascii
-      $inp2 = /_GET\s?\[/ wide ascii
-      // for passing $_GET to a function
-      $inp3 = /\(\s?\$_GET\s?\)/ wide ascii
-      $inp4 = /_POST\s?\[/ wide ascii
-      $inp5 = /\(\s?\$_POST\s?\)/ wide ascii
-      $inp6 = /_REQUEST\s?\[/ wide ascii
-      $inp7 = /\(\s?\$_REQUEST\s?\)/ wide ascii
-      $inp8 = /\(\s?\$_HEADERS\s?[\)\[]/ wide ascii
-      // PHP automatically adds all the request headers into the $_SERVER global array, prefixing each header name by the "HTTP_" string, so e.g. @eval($_SERVER['HTTP_CMD']) will run any code in the HTTP header CMD
-      $inp15 = "_SERVER['HTTP_" wide ascii
-      $inp16 = "_SERVER[\"HTTP_" wide ascii
-      $inp17 = /getenv[\t ]{0,20}\([\t ]{0,20}['"]HTTP_/ wide ascii
-      $inp18 = "array_values($_SERVER)" wide ascii
-      $inp19 = /file_get_contents\("https?:\/\// wide ascii
-      $inp20 = "TSOP_" wide ascii
+        // of course the new tags should also match
+        // already matched by "<?"
+        $php_new1 = /<\?=[^?]/ wide ascii
+        $php_new2 = "<?php" nocase wide ascii
+        $php_new3 = "<script language=\"php" nocase wide ascii
 
-      //strings from private rule capa_php_payload
-      // \([^)] to avoid matching on e.g. eval() in comments
-      $cpayload1 = /\beval[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
-      $cpayload2 = /\bexec[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
-      $cpayload3 = /\bshell_exec[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
-      $cpayload4 = /\bpassthru[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
-      $cpayload5 = /\bsystem[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
-      $cpayload6 = /\bpopen[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
-      $cpayload7 = /\bproc_open[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
-      $cpayload8 = /\bpcntl_exec[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
-      $cpayload9 = /\bassert[\n\t ]{0,500}\([^)0]/ nocase wide ascii
-      $cpayload10 = /\bpreg_replace[\n\t ]{0,500}\([^\)]{1,100}\/[ismxADSUXju]{0,11}(e|\\x65)/ nocase wide ascii
-      $cpayload12 = /\bmb_ereg_replace[\t ]{0,500}\([^\)]{1,100}'e'/ nocase wide ascii
-      $cpayload13 = /\bmb_eregi_replace[\t ]{0,500}\([^\)]{1,100}'e'/ nocase wide ascii
-      $cpayload20 = /\bcreate_function[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
-      $cpayload21 = /\bReflectionFunction[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
-      $cpayload22 = /fetchall\(PDO::FETCH_FUNC[\n\t ]{0,500}[,}\)]/ nocase wide ascii
+        //strings from private rule capa_php_input
+        $inp1 = "php://input" wide ascii
+        $inp2 = /_GET\s?\[/ wide ascii
+        // for passing $_GET to a function
+        $inp3 = /\(\s?\$_GET\s?\)/ wide ascii
+        $inp4 = /_POST\s?\[/ wide ascii
+        $inp5 = /\(\s?\$_POST\s?\)/ wide ascii
+        $inp6 = /_REQUEST\s?\[/ wide ascii
+        $inp7 = /\(\s?\$_REQUEST\s?\)/ wide ascii
+        $inp8 = /\(\s?\$_HEADERS\s?[\)\[]/ wide ascii
+        // PHP automatically adds all the request headers into the $_SERVER global array, prefixing each header name by the "HTTP_" string, so e.g. @eval($_SERVER['HTTP_CMD']) will run any code in the HTTP header CMD
+        $inp15 = "_SERVER['HTTP_" wide ascii
+        $inp16 = "_SERVER[\"HTTP_" wide ascii
+        $inp17 = /getenv[\t ]{0,20}\([\t ]{0,20}['"]HTTP_/ wide ascii
+        $inp18 = "array_values($_SERVER)" wide ascii
+        $inp19 = /file_get_contents\("https?:\/\// wide ascii
+        $inp20 = "TSOP_" wide ascii
 
-      $m_cpayload_preg_filter1 = /\bpreg_filter[\n\t ]{0,500}(\([^\)]|\/\*)/ nocase wide ascii
-      $m_cpayload_preg_filter2 = "'|.{0,500}|e'" nocase wide ascii
-      // TODO backticks
+        //strings from private rule capa_php_payload
+        // \([^)] to avoid matching on e.g. eval() in comments
+        $cpayload1 = /\beval[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
+        $cpayload2 = /\bexec[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
+        $cpayload3 = /\bshell_exec[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
+        $cpayload4 = /\bpassthru[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
+        $cpayload5 = /\bsystem[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
+        $cpayload6 = /\bpopen[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
+        $cpayload7 = /\bproc_open[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
+        $cpayload8 = /\bpcntl_exec[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
+        $cpayload9 = /\bassert[\n\t ]{0,500}\([^)0]/ nocase wide ascii
+        $cpayload10 = /\bpreg_replace[\n\t ]{0,500}\([^\)]{1,100}\/[ismxADSUXju]{0,11}(e|\\x65)/ nocase wide ascii
+        $cpayload12 = /\bmb_ereg_replace[\t ]{0,500}\([^\)]{1,100}'e'/ nocase wide ascii
+        $cpayload13 = /\bmb_eregi_replace[\t ]{0,500}\([^\)]{1,100}'e'/ nocase wide ascii
+        $cpayload20 = /\bcreate_function[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
+        $cpayload21 = /\bReflectionFunction[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
+        $cpayload22 = /fetchall\(PDO::FETCH_FUNC[\n\t ]{0,500}[,}\)]/ nocase wide ascii
 
-      //strings from private rule capa_gen_sus
+        $m_cpayload_preg_filter1 = /\bpreg_filter[\n\t ]{0,500}(\([^\)]|\/\*)/ nocase wide ascii
+        $m_cpayload_preg_filter2 = "'|.{0,500}|e'" nocase wide ascii
+        // TODO backticks
 
-      // these strings are just a bit suspicious, so several of them are needed, depending on filesize
-      $gen_bit_sus1 = /:\s{0,20}eval}/ nocase wide ascii
-      $gen_bit_sus2 = /\.replace\(\/\w\/g/ nocase wide ascii
-      $gen_bit_sus6 = "self.delete"
-      $gen_bit_sus9 = "\"cmd /c" nocase
-      $gen_bit_sus10 = "\"cmd\"" nocase
-      $gen_bit_sus11 = "\"cmd.exe" nocase
-      $gen_bit_sus12 = "%comspec%" wide ascii
-      $gen_bit_sus13 = "%COMSPEC%" wide ascii
-      //TODO:$gen_bit_sus12 = ".UserName" nocase
-      $gen_bit_sus18 = "Hklm.GetValueNames();" nocase
-      // bonus string for proxylogon exploiting webshells
-      $gen_bit_sus19 = "http://schemas.microsoft.com/exchange/" wide ascii
-      $gen_bit_sus21 = "\"upload\"" wide ascii
-      $gen_bit_sus22 = "\"Upload\"" wide ascii
-      $gen_bit_sus23 = "UPLOAD" fullword wide ascii
-      $gen_bit_sus24 = "fileupload" wide ascii
-      $gen_bit_sus25 = "file_upload" wide ascii
-      // own base64 or base32 func
-      $gen_bit_sus29 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" fullword wide ascii
-      $gen_bit_sus29b = "abcdefghijklmnopqrstuvwxyz234567" fullword wide ascii
-      $gen_bit_sus30 = "serv-u" wide ascii
-      $gen_bit_sus31 = "Serv-u" wide ascii
-      $gen_bit_sus32 = "Army" fullword wide ascii
-      // single letter paramweter
-      $gen_bit_sus33 = /\$_(GET|POST|REQUEST)\["\w"\]/ fullword wide ascii
-      $gen_bit_sus34 = "Content-Transfer-Encoding: Binary" wide ascii
-      $gen_bit_sus35 = "crack" fullword wide ascii
+        //strings from private rule capa_gen_sus
 
-      $gen_bit_sus44 = "<pre>" wide ascii
-      $gen_bit_sus45 = "<PRE>" wide ascii
-      $gen_bit_sus46 = "shell_" wide ascii
-      //fp: $gen_bit_sus47 = "Shell" fullword wide ascii
-      $gen_bit_sus50 = "bypass" wide ascii
-      $gen_bit_sus52 = " ^ $" wide ascii
-      $gen_bit_sus53 = ".ssh/authorized_keys" wide ascii
-      $gen_bit_sus55 = /\w'\.'\w/ wide ascii
-      $gen_bit_sus56 = /\w\"\.\"\w/ wide ascii
-      $gen_bit_sus57 = "dumper" wide ascii
-      $gen_bit_sus59 = "'cmd'" wide ascii
-      $gen_bit_sus60 = "\"execute\"" wide ascii
-      $gen_bit_sus61 = "/bin/sh" wide ascii
-      $gen_bit_sus62 = "Cyber" wide ascii
-      $gen_bit_sus63 = "portscan" fullword wide ascii
-      //$gen_bit_sus64 = "\"command\"" fullword wide ascii
-      //$gen_bit_sus65 = "'command'" fullword wide ascii
-      $gen_bit_sus66 = "whoami" fullword wide ascii
-      $gen_bit_sus67 = "$password='" fullword wide ascii
-      $gen_bit_sus68 = "$password=\"" fullword wide ascii
-      $gen_bit_sus69 = "$cmd" fullword wide ascii
-      $gen_bit_sus70 = "\"?>\"." fullword wide ascii
-      $gen_bit_sus71 = "Hacking" fullword wide ascii
-      $gen_bit_sus72 = "hacking" fullword wide ascii
-      $gen_bit_sus73 = ".htpasswd" wide ascii
-      $gen_bit_sus74 = /\btouch\(\$[^,]{1,30},/ wide ascii
-      $gen_bit_sus75 = "uploaded" fullword wide ascii
+        // these strings are just a bit suspicious, so several of them are needed, depending on filesize
+        $gen_bit_sus1  = /:\s{0,20}eval}/ nocase wide ascii
+        $gen_bit_sus2  = /\.replace\(\/\w\/g/ nocase wide ascii
+        $gen_bit_sus6  = "self.delete"
+        $gen_bit_sus9  = "\"cmd /c" nocase
+        $gen_bit_sus10 = "\"cmd\"" nocase
+        $gen_bit_sus11 = "\"cmd.exe" nocase
+        $gen_bit_sus12 = "%comspec%" wide ascii
+        $gen_bit_sus13 = "%COMSPEC%" wide ascii
+        //TODO:$gen_bit_sus12 = ".UserName" nocase
+        $gen_bit_sus18 = "Hklm.GetValueNames();" nocase
+        // bonus string for proxylogon exploiting webshells
+        $gen_bit_sus19 = "http://schemas.microsoft.com/exchange/" wide ascii
+        $gen_bit_sus21 = "\"upload\"" wide ascii
+        $gen_bit_sus22 = "\"Upload\"" wide ascii
+        $gen_bit_sus23 = "UPLOAD" fullword wide ascii
+        $gen_bit_sus24 = "fileupload" wide ascii
+        $gen_bit_sus25 = "file_upload" wide ascii
+        // own base64 or base32 func
+        $gen_bit_sus29 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" fullword wide ascii
+        $gen_bit_sus29b = "abcdefghijklmnopqrstuvwxyz234567" fullword wide ascii
+        $gen_bit_sus30 = "serv-u" wide ascii
+        $gen_bit_sus31 = "Serv-u" wide ascii
+        $gen_bit_sus32 = "Army" fullword wide ascii
+        // single letter paramweter
+        $gen_bit_sus33 = /\$_(GET|POST|REQUEST)\["\w"\]/ fullword wide ascii
+        $gen_bit_sus34 = "Content-Transfer-Encoding: Binary" wide ascii
+        $gen_bit_sus35 = "crack" fullword wide ascii
 
-      // very suspicious strings, one is enough
-      $gen_much_sus7 = "Web Shell" nocase
-      $gen_much_sus8 = "WebShell" nocase
-      $gen_much_sus3 = "hidded shell"
-      $gen_much_sus4 = "WScript.Shell.1" nocase
-      $gen_much_sus5 = "AspExec"
-      $gen_much_sus14 = "\\pcAnywhere\\" nocase
-      $gen_much_sus15 = "antivirus" nocase
-      $gen_much_sus16 = "McAfee" nocase
-      $gen_much_sus17 = "nishang"
-      $gen_much_sus18 = "\"unsafe" fullword wide ascii
-      $gen_much_sus19 = "'unsafe" fullword wide ascii
-      $gen_much_sus24 = "exploit" fullword wide ascii
-      $gen_much_sus25 = "Exploit" fullword wide ascii
-      $gen_much_sus26 = "TVqQAAMAAA" wide ascii
-      $gen_much_sus30 = "Hacker" wide ascii
-      $gen_much_sus31 = "HACKED" fullword wide ascii
-      $gen_much_sus32 = "hacked" fullword wide ascii
-      $gen_much_sus33 = "hacker" wide ascii
-      $gen_much_sus34 = "grayhat" nocase wide ascii
-      $gen_much_sus35 = "Microsoft FrontPage" wide ascii
-      $gen_much_sus36 = "Rootkit" wide ascii
-      $gen_much_sus37 = "rootkit" wide ascii
-      $gen_much_sus38 = "/*-/*-*/" wide ascii
-      $gen_much_sus39 = "u\"+\"n\"+\"s" wide ascii
-      $gen_much_sus40 = "\"e\"+\"v" wide ascii
-      $gen_much_sus41 = "a\"+\"l\"" wide ascii
-      $gen_much_sus42 = "\"+\"(\"+\"" wide ascii
-      $gen_much_sus43 = "q\"+\"u\"" wide ascii
-      $gen_much_sus44 = "\"u\"+\"e" wide ascii
-      $gen_much_sus45 = "/*//*/" wide ascii
-      $gen_much_sus46 = "(\"/*/\"" wide ascii
-      $gen_much_sus47 = "eval(eval(" wide ascii
-      // self remove
-      $gen_much_sus48 = "unlink(__FILE__)" wide ascii
-      $gen_much_sus49 = "Shell.Users" wide ascii
-      $gen_much_sus50 = "PasswordType=Regular" wide ascii
-      $gen_much_sus51 = "-Expire=0" wide ascii
-      $gen_much_sus60 = "_=$$_" wide ascii
-      $gen_much_sus62 = "++;$" wide ascii
-      $gen_much_sus63 = "++; $" wide ascii
-      $gen_much_sus64 = "_.=$_" wide ascii
-      $gen_much_sus70 = "-perm -04000" wide ascii
-      $gen_much_sus71 = "-perm -02000" wide ascii
-      $gen_much_sus72 = "grep -li password" wide ascii
-      $gen_much_sus73 = "-name config.inc.php" wide ascii
-      // touch without parameters sets the time to now, not malicious and gives fp
-      $gen_much_sus75 = "password crack" wide ascii
-      $gen_much_sus76 = "mysqlDll.dll" wide ascii
-      $gen_much_sus77 = "net user" wide ascii
-      $gen_much_sus80 = "fopen(\".htaccess\",\"w" wide ascii
-      $gen_much_sus81 = /strrev\(['"]/ wide ascii
-      $gen_much_sus82 = "PHPShell" fullword wide ascii
-      $gen_much_sus821 = "PHP Shell" fullword wide ascii
-      $gen_much_sus83 = "phpshell" fullword wide ascii
-      $gen_much_sus84 = "PHPshell" fullword wide ascii
-      $gen_much_sus87 = "deface" wide ascii
-      $gen_much_sus88 = "Deface" wide ascii
-      $gen_much_sus89 = "backdoor" wide ascii
-      $gen_much_sus90 = "r00t" fullword wide ascii
-      $gen_much_sus91 = "xp_cmdshell" fullword wide ascii
-      $gen_much_sus92 = "str_rot13" fullword wide ascii
+        $gen_bit_sus44 = "<pre>" wide ascii
+        $gen_bit_sus45 = "<PRE>" wide ascii
+        $gen_bit_sus46 = "shell_" wide ascii
+        //fp: $gen_bit_sus47 = "Shell" fullword wide ascii
+        $gen_bit_sus50 = "bypass" wide ascii
+        $gen_bit_sus52 = " ^ $" wide ascii
+        $gen_bit_sus53 = ".ssh/authorized_keys" wide ascii
+        $gen_bit_sus55 = /\w'\.'\w/ wide ascii
+        $gen_bit_sus56 = /\w\"\.\"\w/ wide ascii
+        $gen_bit_sus57 = "dumper" wide ascii
+        $gen_bit_sus59 = "'cmd'" wide ascii
+        $gen_bit_sus60 = "\"execute\"" wide ascii
+        $gen_bit_sus61 = "/bin/sh" wide ascii
+        $gen_bit_sus62 = "Cyber" wide ascii
+        $gen_bit_sus63 = "portscan" fullword wide ascii
+        //$gen_bit_sus64 = "\"command\"" fullword wide ascii
+        //$gen_bit_sus65 = "'command'" fullword wide ascii
+        $gen_bit_sus66 = "whoami" fullword wide ascii
+        $gen_bit_sus67 = "$password='" fullword wide ascii
+        $gen_bit_sus68 = "$password=\"" fullword wide ascii
+        $gen_bit_sus69 = "$cmd" fullword wide ascii
+        $gen_bit_sus70 = "\"?>\"." fullword wide ascii
+        $gen_bit_sus71 = "Hacking" fullword wide ascii
+        $gen_bit_sus72 = "hacking" fullword wide ascii
+        $gen_bit_sus73 = ".htpasswd" wide ascii
+        $gen_bit_sus74 = /\btouch\(\$[^,]{1,30},/ wide ascii
+        $gen_bit_sus75 = "uploaded" fullword wide ascii
 
-      //strings from private rule capa_php_payload_multiple
-      // \([^)] to avoid matching on e.g. eval() in comments
-      $cmpayload1 = /\beval[\t ]{0,500}\([^)]/ nocase wide ascii
-      $cmpayload2 = /\bexec[\t ]{0,500}\([^)]/ nocase wide ascii
-      $cmpayload3 = /\bshell_exec[\t ]{0,500}\([^)]/ nocase wide ascii
-      $cmpayload4 = /\bpassthru[\t ]{0,500}\([^)]/ nocase wide ascii
-      $cmpayload5 = /\bsystem[\t ]{0,500}\([^)]/ nocase wide ascii
-      $cmpayload6 = /\bpopen[\t ]{0,500}\([^)]/ nocase wide ascii
-      $cmpayload7 = /\bproc_open[\t ]{0,500}\([^)]/ nocase wide ascii
-      $cmpayload8 = /\bpcntl_exec[\t ]{0,500}\([^)]/ nocase wide ascii
-      $cmpayload9 = /\bassert[\t ]{0,500}\([^)0]/ nocase wide ascii
-      $cmpayload10 = /\bpreg_replace[\t ]{0,500}\([^\)]{1,100}\/e/ nocase wide ascii
-      $cmpayload11 = /\bpreg_filter[\t ]{0,500}\([^\)]{1,100}\/e/ nocase wide ascii
-      $cmpayload12 = /\bmb_ereg_replace[\t ]{0,500}\([^\)]{1,100}'e'/ nocase wide ascii
-      $cmpayload20 = /\bcreate_function[\t ]{0,500}\([^)]/ nocase wide ascii
-      $cmpayload21 = /\bReflectionFunction[\t ]{0,500}\([^)]/ nocase wide ascii
+        // very suspicious strings, one is enough
+        $gen_much_sus7  = "Web Shell" nocase
+        $gen_much_sus8  = "WebShell" nocase
+        $gen_much_sus3  = "hidded shell"
+        $gen_much_sus4  = "WScript.Shell.1" nocase
+        $gen_much_sus5  = "AspExec"
+        $gen_much_sus14 = "\\pcAnywhere\\" nocase
+        $gen_much_sus15 = "antivirus" nocase
+        $gen_much_sus16 = "McAfee" nocase
+        $gen_much_sus17 = "nishang"
+        $gen_much_sus18 = "\"unsafe" fullword wide ascii
+        $gen_much_sus19 = "'unsafe" fullword wide ascii
+        $gen_much_sus24 = "exploit" fullword wide ascii
+        $gen_much_sus25 = "Exploit" fullword wide ascii
+        $gen_much_sus26 = "TVqQAAMAAA" wide ascii
+        $gen_much_sus30 = "Hacker" wide ascii
+        $gen_much_sus31 = "HACKED" fullword wide ascii
+        $gen_much_sus32 = "hacked" fullword wide ascii
+        $gen_much_sus33 = "hacker" wide ascii
+        $gen_much_sus34 = "grayhat" nocase wide ascii
+        $gen_much_sus35 = "Microsoft FrontPage" wide ascii
+        $gen_much_sus36 = "Rootkit" wide ascii
+        $gen_much_sus37 = "rootkit" wide ascii
+        $gen_much_sus38 = "/*-/*-*/" wide ascii
+        $gen_much_sus39 = "u\"+\"n\"+\"s" wide ascii
+        $gen_much_sus40 = "\"e\"+\"v" wide ascii
+        $gen_much_sus41 = "a\"+\"l\"" wide ascii
+        $gen_much_sus42 = "\"+\"(\"+\"" wide ascii
+        $gen_much_sus43 = "q\"+\"u\"" wide ascii
+        $gen_much_sus44 = "\"u\"+\"e" wide ascii
+        $gen_much_sus45 = "/*//*/" wide ascii
+        $gen_much_sus46 = "(\"/*/\"" wide ascii
+        $gen_much_sus47 = "eval(eval(" wide ascii
+        // self remove
+        $gen_much_sus48 = "unlink(__FILE__)" wide ascii
+        $gen_much_sus49 = "Shell.Users" wide ascii
+        $gen_much_sus50 = "PasswordType=Regular" wide ascii
+        $gen_much_sus51 = "-Expire=0" wide ascii
+        $gen_much_sus60 = "_=$$_" wide ascii
+        $gen_much_sus61 = "_=$$_" wide ascii
+        $gen_much_sus62 = "++;$" wide ascii
+        $gen_much_sus63 = "++; $" wide ascii
+        $gen_much_sus64 = "_.=$_" wide ascii
+        $gen_much_sus70 = "-perm -04000" wide ascii
+        $gen_much_sus71 = "-perm -02000" wide ascii
+        $gen_much_sus72 = "grep -li password" wide ascii
+        $gen_much_sus73 = "-name config.inc.php" wide ascii
+        // touch without parameters sets the time to now, not malicious and gives fp
+        $gen_much_sus75 = "password crack" wide ascii
+        $gen_much_sus76 = "mysqlDll.dll" wide ascii
+        $gen_much_sus77 = "net user" wide ascii
+        $gen_much_sus80 = "fopen(\".htaccess\",\"w" wide ascii
+        $gen_much_sus81 = /strrev\(['"]/ wide ascii
+        $gen_much_sus82 = "PHPShell" fullword wide ascii
+        $gen_much_sus821= "PHP Shell" fullword wide ascii
+        $gen_much_sus83 = "phpshell" fullword wide ascii
+        $gen_much_sus84 = "PHPshell" fullword wide ascii
+        $gen_much_sus87 = "deface" wide ascii
+        $gen_much_sus88 = "Deface" wide ascii
+        $gen_much_sus89 = "backdoor" wide ascii
+        $gen_much_sus90 = "r00t" fullword wide ascii
+        $gen_much_sus91 = "xp_cmdshell" fullword wide ascii
+        $gen_much_sus92 = "str_rot13" fullword wide ascii
 
-      $fp1 = "# Some examples from obfuscated malware:" ascii
-      $fp2 = "{@see TFileUpload} for further details." ascii
-   condition:
-      filesize < 500KB
-      and (
-         any of ($inp*)
-      )
-      and (
-         any of ($cpayload*) or
-         all of ($m_cpayload_preg_filter*)
-      )
-      and (
-         (
+        $gif = { 47 49 46 38 }
+
+
+        //strings from private rule capa_php_payload_multiple
+        // \([^)] to avoid matching on e.g. eval() in comments
+        $cmpayload1 = /\beval[\t ]{0,500}\([^)]/ nocase wide ascii
+        $cmpayload2 = /\bexec[\t ]{0,500}\([^)]/ nocase wide ascii
+        $cmpayload3 = /\bshell_exec[\t ]{0,500}\([^)]/ nocase wide ascii
+        $cmpayload4 = /\bpassthru[\t ]{0,500}\([^)]/ nocase wide ascii
+        $cmpayload5 = /\bsystem[\t ]{0,500}\([^)]/ nocase wide ascii
+        $cmpayload6 = /\bpopen[\t ]{0,500}\([^)]/ nocase wide ascii
+        $cmpayload7 = /\bproc_open[\t ]{0,500}\([^)]/ nocase wide ascii
+        $cmpayload8 = /\bpcntl_exec[\t ]{0,500}\([^)]/ nocase wide ascii
+        $cmpayload9 = /\bassert[\t ]{0,500}\([^)0]/ nocase wide ascii
+        $cmpayload10 = /\bpreg_replace[\t ]{0,500}\([^\)]{1,100}\/e/ nocase wide ascii
+        $cmpayload11 = /\bpreg_filter[\t ]{0,500}\([^\)]{1,100}\/e/ nocase wide ascii
+        $cmpayload12 = /\bmb_ereg_replace[\t ]{0,500}\([^\)]{1,100}'e'/ nocase wide ascii
+        $cmpayload20 = /\bcreate_function[\t ]{0,500}\([^)]/ nocase wide ascii
+        $cmpayload21 = /\bReflectionFunction[\t ]{0,500}\([^)]/ nocase wide ascii
+
+        $fp1 = "# Some examples from obfuscated malware:" ascii
+        $fp2 = "{@see TFileUpload} for further details." ascii
+    condition:
+        //any of them or
+        not (
+            any of ( $gfp_tiny* )
+            or 1 of ($fp*)
+        )
+        and (
             (
-               $php_short in (0..100) or
-               $php_short in (filesize - 1000..filesize)
+                (
+                        $php_short in (0..100) or
+                        $php_short in (filesize-1000..filesize)
+                )
+                and not any of ( $no_* )
             )
-            and not any of ($no_*)
-         )
-         or any of ($php_new*)
-      )
-      and
-      ((filesize < 1000 and not any of ($wfp_tiny*)) or
-         ((
-               uint32be(0) == 0x47494638  // GIF8
-               or (
-                  filesize < 4KB and
-                  (
-                     1 of ($gen_much_sus*) or
-                     2 of ($gen_bit_sus*)
-                  )
-               ) or (
-                  filesize < 20KB and
-                  (
-                     2 of ($gen_much_sus*) or
-                     3 of ($gen_bit_sus*)
-                  )
-               ) or (
-                  filesize < 50KB and
-                  (
-                     2 of ($gen_much_sus*) or
-                     4 of ($gen_bit_sus*)
-                  )
-               ) or (
-                  filesize < 100KB and
-                  (
-                     2 of ($gen_much_sus*) or
-                     6 of ($gen_bit_sus*)
-                  )
-               ) or (
-                  filesize < 150KB and
-                  (
-                     3 of ($gen_much_sus*) or
-                     7 of ($gen_bit_sus*)
-                  )
-               ) or (
-                  filesize < 500KB and
-                  (
-                     4 of ($gen_much_sus*) or
-                     8 of ($gen_bit_sus*)
-                  )
-               )
+            or any of ( $php_new* )
+        )
+        and (
+            any of ( $inp* )
+        )
+        and (
+            any of ( $cpayload* ) or
+        all of ( $m_cpayload_preg_filter* )
+        )
+        and
+        ( ( filesize < 1000 and not any of ( $wfp_tiny* ) ) or
+        ( (
+        $gif at 0 or
+        (
+            filesize < 4KB and
+            (
+                1 of ( $gen_much_sus* ) or
+                2 of ( $gen_bit_sus* )
             )
-            and
-            (filesize > 5KB or not any of ($wfp_tiny*))) or
-         (filesize < 500KB and (
-               4 of ($cmpayload*)
+        ) or (
+            filesize < 20KB and
+            (
+                2 of ( $gen_much_sus* ) or
+                3 of ( $gen_bit_sus* )
             )
-         )
-      )
-      and not (
-         any of ($gfp_tiny*)
-         or 1 of ($fp*)
-      )
+        ) or (
+            filesize < 50KB and
+            (
+                2 of ( $gen_much_sus* ) or
+                4 of ( $gen_bit_sus* )
+            )
+        ) or (
+            filesize < 100KB and
+            (
+                2 of ( $gen_much_sus* ) or
+                6 of ( $gen_bit_sus* )
+            )
+        ) or (
+            filesize < 150KB and
+            (
+                3 of ( $gen_much_sus* ) or
+                7 of ( $gen_bit_sus* )
+            )
+        ) or (
+            filesize < 500KB and
+            (
+                4 of ( $gen_much_sus* ) or
+                8 of ( $gen_bit_sus* )
+            )
+        )
+        )
+        and
+        ( filesize > 5KB or not any of ( $wfp_tiny* ) ) ) or
+        ( filesize < 500KB and (
+            4 of ( $cmpayload* )
+        )
+        ) )
 }
-
 
 rule WEBSHELL_PHP_Generic_Callback
 {
@@ -471,7 +469,7 @@ rule WEBSHELL_PHP_Generic_Callback
         $inp3 = /\(\s?\$_GET\s?\)/ wide ascii
         $inp4 = /_POST\s?\[/ wide ascii
         $inp5 = /\(\s?\$_POST\s?\)/ wide ascii
-      $inp6 = /_REQUEST\s?\[/ wide ascii
+        $inp6 = /_REQUEST\s?\[/ wide ascii
         $inp7 = /\(\s?\$_REQUEST\s?\)/ wide ascii
         // PHP automatically adds all the request headers into the $_SERVER global array, prefixing each header name by the "HTTP_" string, so e.g. @eval($_SERVER['HTTP_CMD']) will run any code in the HTTP header CMD
         $inp15 = "_SERVER['HTTP_" wide ascii
@@ -606,7 +604,7 @@ rule WEBSHELL_PHP_Generic_Callback
         $gen_much_sus36 = "Rootkit" wide ascii
         $gen_much_sus37 = "rootkit" wide ascii
         $gen_much_sus38 = "/*-/*-*/" wide ascii
-        $gen_much_s39 = "u\"+\"n\"+\"s" wide ascii
+        $gen_much_sus39 = "u\"+\"n\"+\"s" wide ascii
         $gen_much_sus40 = "\"e\"+\"v" wide ascii
         $gen_much_sus41 = "a\"+\"l\"" wide ascii
         $gen_much_sus42 = "\"+\"(\"+\"" wide ascii
@@ -716,7 +714,7 @@ rule WEBSHELL_PHP_Generic_Callback
 rule WEBSHELL_PHP_Base64_Encoded_Payloads : FILE {
     meta:
         description = "php webshell containing base64 encoded payload"
-        license = "Detection Rule License 1.1 hps://github.com/Neo23x0/signature-base/blob/master/LICENSE"
+        license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
         author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
         score = 75
@@ -735,7 +733,6 @@ rule WEBSHELL_PHP_Base64_Encoded_Payloads : FILE {
         hash = "98c1937b9606b1e8e0eebcb116a784c9d2d3db0039b21c45cba399e86c92c2fa"
         hash = "6b6cd1ef7e78e37cbcca94bfb5f49f763ba2f63ed8b33bc4d7f9e5314c87f646"
         hash = "51c2c8b94c4b8cce806735bcf6e5aa3f168f0f7addce47b699b9a4e31dc71b47"
-        hash = "7a16311a371f03b29d5220484e7ecbe841cfaead4e73c17aa6a9c23b5d94544d"
         hash = "e2b1dfcfaa61e92526a3a444be6c65330a8db4e692543a421e19711760f6ffe2"
 
         id = "4e42b47d-725b-5e1f-9408-6c6329f60506"
@@ -911,19 +908,18 @@ rule WEBSHELL_PHP_Generic_Eval
         hash = "64e6c08aa0b542481b86a91cdf1f50c9e88104a8a4572a8c6bd312a9daeba60e"
         hash = "80e98e8a3461d7ba15d869b0641cdd21dd5b957a2006c3caeaf6f70a749ca4bb"
         hash = "93982b8df76080e7ba4520ae4b4db7f3c867f005b3c2f84cb9dff0386e361c35"
-        hash = "51c2c8b94c4b8cce806735bcf6e5aa3f168f0f7addce47b699b9a4e31dc71b47"
         hash = "7a16311a371f03b29d5220484e7ecbe841cfaead4e73c17aa6a9c23b5d94544d"
         hash = "7ca5dec0515dd6f401cb5a52c313f41f5437fc43eb62ea4bcc415a14212d09e9"
         hash = "fd5f0f81204ca6ca6e93343500400d5853012e88254874fc9f62efe0fde7ab3c"
         hash = "883f48ed4e9646da078cabf6b8b4946d9f199660262502650f76450ecf60ddd5"
-        hash = "6d042b6393669bb4d98213091cabe554ab192a6c916c04d06cc2a4ca92c00"
+        hash = "6d042b6393669bb4d98213091cabe554ab192a6c916e86c04d06cc2a4ca92c00"
         hash = "dd5d8a9b4bb406e0b8f868165a1714fe54ffb18e621582210f96f6e5ae850b33"
 
 
         id = "79cfbd88-f6f7-5cba-a325-0a99962139ca"
     strings:
         // new: eval($GLOBALS['_POST'
-        $geval = /\b(exec|shell_exec|passthru|system|popen|proc_open|pcntl_exec|eval|assert)[\t ]{0,300}(\(base64_decode)?(\(stripslashes)?[\t ]{0,300}(\(trim)?[\t ]{0,300}\(\$(_POST|_GET|_REQUEST|_SERVER\s?\[['"]HTTP_|GLOBALS\[['"]_(POST|GET|REQUEST))/ wide ascii
+        $geval = /\b(exec|shell_exec|passthru|system|popen|proc_open|pcntl_exec|eval|assert)[\t ]{0,500}(\(base64_decode)?(\(stripslashes)?[\t ]{0,500}(\(trim)?[\t ]{0,500}\(\$(_POST|_GET|_REQUEST|_SERVER\s?\[['"]HTTP_|GLOBALS\[['"]_(POST|GET|REQUEST))/ wide ascii
 
         //strings from private rule php_false_positive
         // try to use only strings which would be flagged by themselves as suspicious by other rules, e.g. eval
@@ -957,9 +953,9 @@ rule WEBSHELL_PHP_Double_Eval_Tiny
         license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
         author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
-        score = 70
+        score = 75
         date = "2021-01-11"
-        modified = "2026-02-23"
+        modified = "2023-07-05"
         hash = "f66fb918751acc7b88a17272a044b5242797976c73a6e54ac6b04b02f61e9761"
         hash = "6b2f0a3bd80019dea536ddbf92df36ab897dd295840cb15bb7b159d0ee2106ff"
         hash = "aabfd179aaf716929c8b820eefa3c1f613f8dcac"
@@ -973,7 +969,6 @@ rule WEBSHELL_PHP_Double_Eval_Tiny
         $fp1 = "clone" fullword wide ascii
         $fp2 = "* @assert" ascii
         $fp3 = "*@assert" ascii
-        $fp4 = "--EXPECT--" ascii
 
         //strings from private rule capa_php_old_safe
         $php_short = "<?" wide ascii
@@ -1013,7 +1008,7 @@ rule WEBSHELL_PHP_OBFUSC
         reference = "Internal Research"
         score = 75
         date = "2021/01/12"
-        modified = "2025-09-22"
+        modified = "2024-03-11"
         hash = "eec9ac58a1e763f5ea0f7fa249f1fe752047fa60"
         hash = "181a71c99a4ae13ebd5c94bfc41f9ec534acf61cd33ef5bce5fb2a6f48b65bf4"
         hash = "76d4e67e13c21662c4b30aab701ce9cdecc8698696979e504c288f20de92aee7"
@@ -1036,9 +1031,6 @@ rule WEBSHELL_PHP_OBFUSC
         $gfp10 = "[][}{;|]\\|\\\\[+=]\\|<?=>?"
         $gfp11 = "(eval (getenv \"EPROLOG\")))"
         $gfp12 = "ZmlsZV9nZXRfY29udGVudHMoJ2h0dHA6Ly9saWNlbnNlLm9wZW5jYXJ0LWFwaS5jb20vbGljZW5zZS5waHA/b3JkZXJ"
-        $gfp13 = "assert(\\\""
-        $gfp14 = "PhutilUTF8TestCase"
-        $gfp15 = "chr(195).chr(128) => 'A',"  // 3d413ceb54e929d6af2e64ebb8df7ba2452a7aac876dddcf6336c3445e7bcc91, wordpress formatter.php
 
         //strings from private rule capa_php_old_safe
         $php_short = "<?" wide ascii
@@ -1080,7 +1072,7 @@ rule WEBSHELL_PHP_OBFUSC
         $cpayload7 = /\bproc_open[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
         $cpayload8 = /\bpcntl_exec[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
         $cpayload9 = /\bassert[\n\t ]{0,500}\([^)0]/ nocase wide ascii
-        $cpayload10 = /\bpreg_replace[\n\t ]{0,500}\([^\)]{1,100}\/[ismxADSju]{0,11}(e|\\x65)/ nocase wide ascii
+        $cpayload10 = /\bpreg_replace[\n\t ]{0,500}\([^\)]{1,100}\/[ismxADSUXju]{0,11}(e|\\x65)/ nocase wide ascii
         $cpayload12 = /\bmb_ereg_replace[\t ]{0,500}\([^\)]{1,100}'e'/ nocase wide ascii
         $cpayload13 = /\bmb_eregi_replace[\t ]{0,500}\([^\)]{1,100}'e'/ nocase wide ascii
         $cpayload20 = /\bcreate_function[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
@@ -1180,7 +1172,7 @@ rule WEBSHELL_PHP_OBFUSC_Encoded
                 (
                         $php_short in (0..100) or
                         $php_short in (filesize-1000..filesize)
-              )
+                )
                 and not any of ( $no_* )
             )
             or any of ( $php_new* )
@@ -1201,7 +1193,6 @@ rule WEBSHELL_PHP_OBFUSC_Encoded_Mixed_Dec_And_Hex
         hash = "0e21931b16f30b1db90a27eafabccc91abd757fa63594ba8a6ad3f477de1ab1c"
         hash = "929975272f0f42bf76469ed89ebf37efcbd91c6f8dac1129c7ab061e2564dd06"
         hash = "88fce6c1b589d600b4295528d3fcac161b581f739095b99cd6c768b7e16e89ff"
-        hash = "883f48ed4e9646da078cabf6b8b4946d9f199660262502650f76450ecf60ddd5"
         hash = "50389c3b95a9de00220fc554258fda1fef01c62dad849e66c8a92fc749523457"
         hash = "c4ab4319a77b751a45391aa01cde2d765b095b0e3f6a92b0b8626d5c7e3ad603"
         hash = "df381f04fca2522e2ecba0f5de3f73a655d1540e1cf865970f5fa3bf52d2b297"
@@ -1355,7 +1346,7 @@ rule WEBSHELL_PHP_OBFUSC_Str_Replace
         modified = "2023-04-05"
         hash = "691305753e26884d0f930cda0fe5231c6437de94"
         hash = "7efd463aeb5bf0120dc5f963b62463211bd9e678"
-        hash = "fb655ddb90892e522ae1aaaf6cd8bde27a7ef"
+        hash = "fb655ddb90892e522ae1aaaf6cd8bde27a7f49ef"
         hash = "d1863aeca1a479462648d975773f795bb33a7af2"
         hash = "4d31d94b88e2bbd255cf501e178944425d40ee97"
         hash = "e1a2af3477d62a58f9e6431f5a4a123fb897ea80"
@@ -1544,9 +1535,9 @@ rule WEBSHELL_PHP_OBFUSC_3
         license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
         author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
-        score = 70
+        score = 75
         date = "2021/04/17"
-        modified = "2024-12-09"
+        modified = "2024-03-11"
         hash = "11bb1fa3478ec16c00da2a1531906c05e9c982ea"
         hash = "d6b851cae249ea6744078393f622ace15f9880bc"
         hash = "14e02b61905cf373ba9234a13958310652a91ece"
@@ -1554,7 +1545,7 @@ rule WEBSHELL_PHP_OBFUSC_3
 
         id = "f2017e6f-0623-53ff-aa26-a479f3a02024"
     strings:
-        $obf1 = "chr(" wide aii
+        $obf1 = "chr(" wide ascii
 
         //strings from private rule capa_php_old_safe
         $php_short = "<?" wide ascii
@@ -1613,7 +1604,6 @@ rule WEBSHELL_PHP_OBFUSC_3
         $cfp1 = /ob_start\(['\"]ob_gzhandler/ nocase wide ascii
         $cfp2 = "IWPML_Backend_Action_Loader" ascii wide
         $cfp3 = "<?phpclass WPML" ascii
-        $cfp4 = "      return implode(, "
 
         //strings from private rule capa_php_payload
         // \([^)] to avoid matching on e.g. eval() in comments
@@ -1766,7 +1756,7 @@ rule WEBSHELL_PHP_OBFUSC_3
         $gen_much_sus90 = "r00t" fullword wide ascii
         $gen_much_sus91 = "xp_cmdshell" fullword wide ascii
         $gen_much_sus92 = "base64_decode(base64_decode(" fullword wide ascii
-        $gen_much_sus9= "eval(\"/*" wide ascii
+        $gen_much_sus93 = "eval(\"/*" wide ascii
         $gen_much_sus94 = "=$_COOKIE;" wide ascii
 
         $gif = { 47 49 46 38 }
@@ -1902,7 +1892,7 @@ rule WEBSHELL_PHP_Includer_Tiny
         description = "Suspicious: Might be PHP webshell includer, check the included file"
         license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
         author = "Arnim Rupp (https://github.com/ruppde)"
-      reference = "Internal Research"
+        reference = "Internal Research"
         score = 75
         date = "2021/04/17"
         modified = "2023-07-05"
@@ -1951,7 +1941,7 @@ rule WEBSHELL_PHP_Dynamic
         author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
         date = "2021/01/13"
-        modified = "2024-12-09"
+        modified = "2023-10-06"
         score = 60
         hash = "65dca1e652d09514e9c9b2e0004629d03ab3c3ef"
         hash = "b8ab38dc75cec26ce3d3a91cb2951d7cdd004838"
@@ -1999,7 +1989,6 @@ rule WEBSHELL_PHP_Dynamic
         $fp6 = "// TODO error about missing expression" /* <?php\x0a// TODO error about missing expression\x0a$a($b = 3, $c,); */
         $fp7 = "// This is an invalid location for an attribute, "
         $fp8 = "/* Auto-generated from php/php-langspec tests */"
-        $fp_dynamic1 = /"\$[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff\[\]'"]{0,20}\s{0,20}\(\$/ wide ascii // e.g. echo "$callback($text)";
     condition:
         filesize > 20 and filesize < 200 and (
             (
@@ -2026,7 +2015,7 @@ rule WEBSHELL_PHP_Dynamic_Big
         author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
         date = "2021/02/07"
-        modified = "2025-08-18"
+        modified = "2024-02-23"
         score = 50
         hash = "6559bfc4be43a55c6bb2bd867b4c9b929713d3f7f6de8111a3c330f87a9b302c"
         hash = "9e82c9c2fa64e26fd55aa18f74759454d89f968068d46b255bd4f41eb556112e"
@@ -2041,8 +2030,7 @@ rule WEBSHELL_PHP_Dynamic_Big
         id = "a5caab93-7b94-59d7-bbca-f9863e81b9e5"
     strings:
         //strings from private rule capa_bin_files
-        $dex1 = "dex\n0"
-        $dex2 = "dey\n0"
+        $dex   = { 64 65 ( 78 | 79 ) 0a 30 }
         $pack  = { 50 41 43 4b 00 00 00 02 00 }
 
         //strings from private rule capa_php_new_long
@@ -2064,7 +2052,7 @@ rule WEBSHELL_PHP_Dynamic_Big
 
         //strings from private rule capa_gen_sus
 
-        // these strings are just a bit suspicious, so several of them are needed, depending filesize
+        // these strings are just a bit suspicious, so several of them are needed, depending on filesize
         $gen_bit_sus1  = /:\s{0,20}eval}/ nocase wide ascii
         $gen_bit_sus2  = /\.replace\(\/\w\/g/ nocase wide ascii
         $gen_bit_sus6  = "self.delete"
@@ -2217,8 +2205,6 @@ rule WEBSHELL_PHP_Dynamic_Big
         $fp2 = "* @package   PHP_CodeSniffer" ascii
         $fp3 = ".jQuery===" ascii
         $fp4 = "* @param string $lstat encoded LStat string" ascii
-        $fp5 = "' => array('horde:"
-        $fp6 = "$messages['fileuploaderror'] = '"
     condition:
         //any of them or
         not (
@@ -2227,8 +2213,7 @@ rule WEBSHELL_PHP_Dynamic_Big
             uint32be(0) == 0x3c3f786d  or
             // <?XML
             uint32be(0) == 0x3c3f584d  or
-            $dex1 at 0 or
-            $dex2 at 0 or
+            $dex at 0 or
             $pack at 0 or
             // fp on jar with zero compression
             uint16(0) == 0x4b50 or
@@ -2236,7 +2221,7 @@ rule WEBSHELL_PHP_Dynamic_Big
         )
         and (
             any of ( $new_php* ) or
-            $php_short at
+            $php_short at 0
         )
         and (
             any of ( $dynamic* )
@@ -2330,7 +2315,7 @@ rule WEBSHELL_PHP_Dynamic_Big
                     math.entropy(500, filesize-500) >= 7.7 and
                     // encoded text has a higher mean than text or code because it's missing the spaces and special chars with the low numbers
                     math.mean(500, filesize-500) > 120 and
-                    math.mean(500, filesize-5) < 136 and
+                    math.mean(500, filesize-500) < 136 and
                     // deviation of base64 is ~20 according to CyberChef_v9.21.0.html#recipe=Generate_Lorem_Ipsum(3,'Paragraphs')To_Base64('A-Za-z0-9%2B/%3D')To_Charcode('Space',10)Standard_Deviation('Space')
                     // lets take a bit more because it might not be pure base64 also include some xor, shift, replacement, ...
                     // 89 is the mean of the base64 chars
@@ -2344,12 +2329,12 @@ rule WEBSHELL_PHP_Dynamic_Big
 rule WEBSHELL_PHP_Encoded_Big
 {
     meta:
-        description = "PHP webshell using some kind of eval with encoded blob to decode, which is checked with YARAs math.entropy module"
+        description = "PHP webshell using some kind of eval with encoded blob to decode"
         license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
         author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
         date = "2021/02/07"
-        modified = "2024-12-16"
+        modified = "2024-03-11"
         score = 50
         hash = "1d4b374d284c12db881ba42ee63ebce2759e0b14"
         hash = "fc0086caee0a2cd20609a05a6253e23b5e3245b8"
@@ -2372,6 +2357,7 @@ rule WEBSHELL_PHP_Encoded_Big
         $cpayload2 = /\bexec[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
         $cpayload3 = /\bshell_exec[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
         $cpayload4 = /\bpassthru[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
+        $cpayload5 = /\bsystem[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
         $cpayload6 = /\bpopen[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
         $cpayload7 = /\bproc_open[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
         $cpayload8 = /\bpcntl_exec[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
@@ -2492,11 +2478,10 @@ rule WEBSHELL_PHP_Generic_Backticks_OBFUSC
         hash = "23dc299f941d98c72bd48659cdb4673f5ba93697"
         hash = "e3f393a1530a2824125ecdd6ac79d80cfb18fffb89f470d687323fb5dff0eec1"
         hash = "1e75914336b1013cc30b24d76569542447833416516af0d237c599f95b593f9b"
-        hash = "8db86ad90883cd208cf86acd45e67c03f994998804441705d690cb6526614d00"
 
         id = "5ecb329f-0755-536d-8bfa-e36158474a0b"
     strings:
-         = /echo[\t ]{0,500}\(?`\$/ wide ascii
+        $s1 = /echo[\t ]{0,500}\(?`\$/ wide ascii
 
         //strings from private rule capa_php_old_safe
         $php_short = "<?" wide ascii
@@ -2535,7 +2520,7 @@ rule WEBSHELL_PHP_By_String_Known_Webshell
         author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
         date = "2021-01-09"
-        modified = "2025-08-18"
+        modified = "2023-04-05"
         score = 70
         hash = "d889da22893536d5965541c30896f4ed4fdf461d"
         hash = "10f4988a191774a2c6b85604344535ee610b844c1708602a355cf7e9c12c3605"
@@ -2638,8 +2623,7 @@ rule WEBSHELL_PHP_By_String_Known_Webshell
         $php_new3 = "<script language=\"php" nocase wide ascii
 
         //strings from private rule capa_bin_files
-        $dex1 = "dex\n0"
-        $dex2 = "dey\n0"
+        $dex   = { 64 65 ( 78 | 79 ) 0a 30 }
         $pack  = { 50 41 43 4b 00 00 00 02 00 }
 
     condition:
@@ -2655,8 +2639,7 @@ rule WEBSHELL_PHP_By_String_Known_Webshell
         )
         and not (
         uint16(0) == 0x5a4d or
-        $dex1 at 0 or
-        $dex2 at 0 or
+        $dex at 0 or
         $pack at 0 or
         // fp on jar with zero compression
         uint16(0) == 0x4b50
@@ -2671,7 +2654,7 @@ rule WEBSHELL_PHP_Strings_SUSP
         description = "typical webshell strings, suspicious"
         license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
         author = "Arnim Rupp (https://github.com/ruppde)"
-        reference = "Internal Resrch"
+        reference = "Internal Research"
         date = "2021/01/12"
         modified = "2023-07-05"
         score = 50
@@ -2763,10 +2746,9 @@ rule WEBSHELL_PHP_In_Htaccess
         score = 75
         date = "2021/01/07"
         modified = "2023-07-05"
-        hash = "c026d4512a32d93899d486f11d1e13b058a713"
+        hash = "c026d4512a32d93899d486c6f11d1e13b058a713"
         hash = "d79e9b13a32a9e9f3fa36aa1a4baf444bfd2599a"
         hash = "e1d1091fee6026829e037b2c70c228344955c263"
-        hash = "c026d4512a32d93899d486c6f11d1e13b058a713"
         hash = "8c9e65cd3ef093cd9c5b418dc5116845aa6602bc92b9b5991b27344d8b3f7ef2"
 
         id = "0f5edff9-22b2-50c9-ae81-72698ea8e7db"
@@ -2957,7 +2939,7 @@ rule WEBSHELL_ASP_Writer
 
         // classids for scripting host etc
         $tagasp_classid1 = "72C24DD5-D70A-438B-8A42-98424B88AFB8" nocase wide ascii
-      $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
+        $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid3 = "093FF999-1EA0-4079-9525-9614C3504B74" nocase wide ascii
         $tagasp_classid4 = "F935DC26-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid5 = "0D43FE01-F093-11CF-8940-00A0C9054228" nocase wide ascii
@@ -3051,7 +3033,7 @@ rule WEBSHELL_ASP_Writer
                     $tagasp_short1 in ( filesize-1000..filesize )
                 )
             )
-        ) a not (
+        ) and not (
             (
                 any of ( $perl* ) or
                 $php1 at 0 or
@@ -3100,10 +3082,8 @@ rule WEBSHELL_ASP_OBFUSC
         hash = "ad597eee256de51ffb36518cd5f0f4aa0f254f27517d28fb7543ae313b15e112"
         hash = "e0d21fdc16e0010b88d0197ebf619faa4aeca65243f545c18e10859469c1805a"
         hash = "54a5620d4ea42e41beac08d8b1240b642dd6fd7c"
-        hash = "fc44fd7475ee6c0758ace2b17dd41ed7ea75cc73"
         hash = "be2fedc38fc0c3d1f925310d5156ccf3d80f1432"
         hash = "3175ee00fc66921ebec2e7ece8aa3296d4275cb5"
-        hash = "d6b96d844ac395358ee38d4524105d331af42ede"
         hash = "cafc4ede15270ab3f53f007c66e82627a39f4d0f"
 
         id = "3960b692-9f6f-52c5-b881-6f9e1b3ac555"
@@ -3238,7 +3218,7 @@ rule WEBSHELL_ASP_OBFUSC
         $m_multi_one1 = "Replace(" wide ascii
         $m_multi_one2 = "Len(" wide ascii
         $m_multi_one3 = "Mid(" wide ascii
-        $m_mul_one4 = "mid(" wide ascii
+        $m_multi_one4 = "mid(" wide ascii
         $m_multi_one5 = ".ToString(" wide ascii
 
         /*
@@ -3370,7 +3350,7 @@ rule WEBSHELL_ASP_Generic_Eval_On_Input
         description = "Generic ASP webshell which uses any eval/exec function directly on user input"
         license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
         author = "Arnim Rupp (https://github.com/ruppde)"
-        reference = "Internal search"
+        reference = "Internal Research"
         score = 75
         date = "2021/01/07"
         modified = "2023-04-05"
@@ -3481,7 +3461,6 @@ rule WEBSHELL_ASP_Nano
         date = "2021/01/13"
         modified = "2023-04-05"
         hash = "3b7910a499c603715b083ddb6f881c1a0a3a924d"
-        hash = "990e3f129b8ba409a819705276f8fa845b95dad0"
         hash = "22345e956bce23304f5e8e356c423cee60b0912c"
         hash = "c84a6098fbd89bd085526b220d0a3f9ab505bcba"
         hash = "b977c0ad20dc738b5dacda51ec8da718301a75d7"
@@ -3559,7 +3538,8 @@ rule WEBSHELL_ASP_Nano
 
         // avoid hitting jsp
         $jsp1 = "=\"java." wide ascii
-        $jsp2 = "=\"javax." wide asc        $jsp3 = "java.lang." wide ascii
+        $jsp2 = "=\"javax." wide ascii
+        $jsp3 = "java.lang." wide ascii
         $jsp4 = "public" fullword wide ascii
         $jsp5 = "throws" fullword wide ascii
         $jsp6 = "getValue" fullword wide ascii
@@ -3748,7 +3728,7 @@ rule WEBSHELL_ASP_Encoded
         (
             any of ( $tagasp_long* ) or
             // TODO :  yara_push_private_rules.py doesn't do private rules in private rules yet
-          any of ( $tagasp_classid* ) or
+            any of ( $tagasp_classid* ) or
             (
                 $tagasp_short1 and
                 $tagasp_short2 in ( filesize-100..filesize )
@@ -3847,7 +3827,7 @@ rule WEBSHELL_ASP_Encoded_AspCoding
         $jsp2 = "=\"javax." wide ascii
         $jsp3 = "java.lang." wide ascii
         $jsp4 = "public" fullword wide ascii
-        $jsp5 = "throws" fullwo wide ascii
+        $jsp5 = "throws" fullword wide ascii
         $jsp6 = "getValue" fullword wide ascii
         $jsp7 = "getBytes" fullword wide ascii
 
@@ -3893,7 +3873,6 @@ rule WEBSHELL_ASP_By_String
         date = "2021-01-13"
         modified = "2023-04-05"
         hash = "f72252b13d7ded46f0a206f63a1c19a66449f216"
-        hash = "bd75ac9a1d1f6bcb9a2c82b13ea28c0238360b3a7be909b2ed19d3c96e519d3d"
         hash = "56a54fe1f8023455800fd0740037d806709ffb9ece1eb9e7486ad3c3e3608d45"
         hash = "4ef5d8b51f13b36ce7047e373159d7bb42ca6c9da30fad22e083ab19364c9985"
         hash = "e90c3c270a44575c68d269b6cf78de14222f2cbc5fdfb07b9995eb567d906220"
@@ -4007,7 +3986,7 @@ rule WEBSHELL_ASP_By_String
         // <%@PAGE LANGUAGE=JSCRIPT%>
         // <%@ Page Language="Jscript" validateRequest="false" %>
         // <%@ Page Language = Jscript %>
-        // <%@ge Language="C#" %>
+        // <%@ Page Language="C#" %>
         // <%@ Page Language="VB" ContentType="text/html" validaterequest="false" AspCompat="true" Debug="true" %>
         // <script runat="server" language="JScript">
         // <SCRIPT RUNAT=SERVER LANGUAGE=JSCRIPT>
@@ -4208,7 +4187,7 @@ rule WEBSHELL_ASP_Generic_Tiny
         reference = "Internal Research"
         score = 75
         date = "2021/01/07"
-        modified = "2025-08-18"
+        modified = "2023-07-05"
         hash = "990e3f129b8ba409a819705276f8fa845b95dad0"
         hash = "52ce724580e533da983856c4ebe634336f5fd13a"
         hash = "0864f040a37c3e1cef0213df273870ed6a61e4bc"
@@ -4223,7 +4202,7 @@ rule WEBSHELL_ASP_Generic_Tiny
         // also looking for %> to reduce fp (yeah, short atom but seldom since special chars)
         $tagasp_short2 = "%>" wide ascii
 
-        // classids for scripng host etc
+        // classids for scripting host etc
         $tagasp_classid1 = "72C24DD5-D70A-438B-8A42-98424B88AFB8" nocase wide ascii
         $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid3 = "093FF999-1EA0-4079-9525-9614C3504B74" nocase wide ascii
@@ -4293,8 +4272,7 @@ rule WEBSHELL_ASP_Generic_Tiny
         $asp_text2 = ".Text" wide ascii
 
         //strings from private rule capa_bin_files
-        $dex1 = "dex\n0"
-        $dex2 = "dey\n0"
+        $dex   = { 64 65 ( 78 | 79 ) 0a 30 }
         $pack  = { 50 41 43 4b 00 00 00 02 00 }
 
         //strings from private rule capa_asp_payload
@@ -4313,7 +4291,7 @@ rule WEBSHELL_ASP_Generic_Tiny
         $asp_multi_payload_one1 = "CreateObject" nocase fullword wide ascii
         $asp_multi_payload_one2 = "addcode" fullword wide ascii
         $asp_multi_payload_one3 = /\.run\b/ wide ascii
-        $asp_multi_payload_two1 = "CreeInstanceFromVirtualPath" fullword wide ascii
+        $asp_multi_payload_two1 = "CreateInstanceFromVirtualPath" fullword wide ascii
         $asp_multi_payload_two2 = "ProcessRequest" fullword wide ascii
         $asp_multi_payload_two3 = "BuildManager" fullword wide ascii
         $asp_multi_payload_three1 = "System.Diagnostics" wide ascii
@@ -4382,8 +4360,7 @@ rule WEBSHELL_ASP_Generic_Tiny
         )
         and not 1 of ( $fp* ) and not (
         uint16(0) == 0x5a4d or
-        $dex1 at 0 or
-        $dex2 at 0 or
+        $dex at 0 or
         $pack at 0 or
         // fp on jar with zero compression
         uint16(0) == 0x4b50
@@ -4417,11 +4394,10 @@ rule WEBSHELL_ASP_Generic : FILE {
         author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
         date = "2021-03-07"
-        modified = "2025-08-18"
+        modified = "2023-07-05"
         score = 60
         hash = "a8c63c418609c1c291b3e731ca85ded4b3e0fba83f3489c21a3199173b176a75"
         hash = "4cf6fbad0411b7d33e38075f5e00d4c8ae9ce2f6f53967729974d004a183b25c"
-        hash = "a91320483df0178eb3cafea830c1bd94585fc896"
         hash = "f3398832f697e3db91c3da71a8e775ebf66c7e73"
         id = "0904cefb-6e0f-5e5f-9986-cf83d409ce46"
     strings:
@@ -4495,7 +4471,6 @@ rule WEBSHELL_ASP_Generic : FILE {
         $fp2 = "B2BTools"
         $fp3 = "<b>Failed to execute cache update. See the log file for more information" ascii
         $fp4 = "Microsoft. All rights reserved."
-        $fp5 = "\"unsafe\"," ascii wide
 
         //strings from private rule capa_asp
         $tagasp_short1 = /<%[^"]/ wide ascii
@@ -4504,7 +4479,7 @@ rule WEBSHELL_ASP_Generic : FILE {
 
         // classids for scripting host etc
         $tagasp_classid1 = "72C24DD5-D70A-438B-8A42-98424B88AFB8" nocase wide ascii
-        $tagasp_classid2 = "F935DC22-1CF0-11D0-B9-00C04FD58A0B" nocase wide ascii
+        $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid3 = "093FF999-1EA0-4079-9525-9614C3504B74" nocase wide ascii
         $tagasp_classid4 = "F935DC26-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid5 = "0D43FE01-F093-11CF-8940-00A0C9054228" nocase wide ascii
@@ -4553,8 +4528,7 @@ rule WEBSHELL_ASP_Generic : FILE {
 
 
         //strings from private rule capa_bin_files
-        $dex1 = "dex\n0"
-        $dex2 = "dey\n0"
+        $dex   = { 64 65 ( 78 | 79 ) 0a 30 }
         $pack  = { 50 41 43 4b 00 00 00 02 00 }
 
         //strings from private rule capa_asp_input
@@ -4594,7 +4568,7 @@ rule WEBSHELL_ASP_Generic : FILE {
         $asp_multi_payload_one3 = /\.run\b/ wide ascii
         $asp_multi_payload_two1 = "CreateInstanceFromVirtualPath" fullword wide ascii
         $asp_multi_payload_two2 = "ProcessRequest" fullword wide ascii
-        $asp_multi_payloadwo3 = "BuildManager" fullword wide ascii
+        $asp_multi_payload_two3 = "BuildManager" fullword wide ascii
         $asp_multi_payload_three1 = "System.Diagnostics" wide ascii
         $asp_multi_payload_three2 = "Process" fullword wide ascii
         $asp_multi_payload_three3 = "Start" fullword wide ascii
@@ -4657,8 +4631,7 @@ rule WEBSHELL_ASP_Generic : FILE {
         )
         and not (
         uint16(0) == 0x5a4d or
-        $dex1 at 0 or
-        $dex2 at 0 or
+        $dex at 0 or
         $pack at 0 or
         // fp on jar with zero compression
         uint16(0) == 0x4b50
@@ -4790,7 +4763,7 @@ rule WEBSHELL_ASP_Generic_Registry_Reader
         $php2 = "<?="
 
         // avoid hitting jsp
-        $jsp1 "=\"java." wide ascii
+        $jsp1 = "=\"java." wide ascii
         $jsp2 = "=\"javax." wide ascii
         $jsp3 = "java.lang." wide ascii
         $jsp4 = "public" fullword wide ascii
@@ -4896,7 +4869,7 @@ rule WEBSHELL_ASPX_Regeorg_CSHARP
 
         // classids for scripting host etc
         $tagasp_classid1 = "72C24DD5-D70A-438B-8A42-98424B88AFB8" nocase wide ascii
-        $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide asi
+        $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid3 = "093FF999-1EA0-4079-9525-9614C3504B74" nocase wide ascii
         $tagasp_classid4 = "F935DC26-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid5 = "0D43FE01-F093-11CF-8940-00A0C9054228" nocase wide ascii
@@ -5099,7 +5072,7 @@ rule WEBSHELL_ASP_Runtime_Compile : FILE {
         hash = "bd75ac9a1d1f6bcb9a2c82b13ea28c0238360b3a7be909b2ed19d3c96e519d3d"
         hash = "e44058dd1f08405e59d411d37d2ebc3253e2140385fa2023f9457474031b48ee"
         hash = "f6092ab5c8d491ae43c9e1838c5fd79480055033b081945d16ff0f1aaf25e6c7"
-        hash = "dfd30139e66cba45b2ad679c357a1e2f565e6140a17e36e29a1e5839e87c5e"
+        hash = "dfd30139e66cba45b2ad679c357a1e2f565e6b3140a17e36e29a1e5839e87c5e"
         hash = "89eac7423dbf86eb0b443d8dd14252b4208e7462ac2971c99f257876388fccf2"
         hash = "8ce4eaf111c66c2e6c08a271d849204832713f8b66aceb5dadc293b818ccca9e"
         id = "5da9318d-f542-5603-a111-5b240f566d47"
@@ -5197,8 +5170,7 @@ rule WEBSHELL_ASP_SQL
         hash = "216c1dd950e0718e35bc4834c5abdc2229de3612"
         hash = "ffe44e9985d381261a6e80f55770833e4b78424bn"
         hash = "3d7cd32d53abc7f39faed133e0a8f95a09932b64"
-        hash = "f19cc178f1cfad8601f5eea2352cdbd2d64e7e"
-        hash = "cafc4ede15270ab3f53f007c66e82627a39f4d0f"
+        hash = "f19cc178f1cfad8601f5eea2352cdbd2d6f94e7e"
 
         id = "e534dcb9-40ab-544f-ae55-89fb21c422e9"
     strings:
@@ -5403,7 +5375,7 @@ rule WEBSHELL_ASP_Scan_Writable
         // also looking for %> to reduce fp (yeah, short atom but seldom since special chars)
         $tagasp_short2 = "%>" wide ascii
 
-        // classids for scripting hostc
+        // classids for scripting host etc
         $tagasp_classid1 = "72C24DD5-D70A-438B-8A42-98424B88AFB8" nocase wide ascii
         $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid3 = "093FF999-1EA0-4079-9525-9614C3504B74" nocase wide ascii
@@ -5521,11 +5493,10 @@ rule WEBSHELL_JSP_ReGeorg
         hash = "6db49e43722080b5cd5f07e058a073ba5248b584"
         author = "Arnim Rupp (https://github.com/ruppde)"
         date = "2021/01/24"
-        modified = "2024-12-09"
+        modified = "2023-04-05"
         score = 75
         hash = "650eaa21f4031d7da591ebb68e9fc5ce5c860689"
         hash = "00c86bf6ce026ccfaac955840d18391fbff5c933"
-        hash = "6db49e43722080b5cd5f07e058a073ba5248b584"
         hash = "9108a33058aa9a2fb6118b719c5b1318f33f0989"
 
         id = "cbb90005-d8f8-5c64-85d1-29e466f48c25"
@@ -5553,7 +5524,7 @@ rule WEBSHELL_JSP_ReGeorg
         filesize < 300KB and (
         $cjsp_short1 at 0 or
             any of ( $cjsp_long* ) or
-            ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+            $cjsp_short2 in ( filesize-100..filesize ) or
         (
             $cjsp_short2 and (
                 $cjsp_short1 in ( 0..1000 ) or
@@ -5574,9 +5545,8 @@ rule WEBSHELL_JSP_HTTP_Proxy
         reference = "Internal Research"
         score = 75
         date = "2021/01/24"
-        modified = "2024-12-09"
+        modified = "2023-07-05"
         hash = "97c1e2bf7e769d3fc94ae2fc74ac895f669102c6"
-        hash = "2f9b647660923c5262636a5344e2665512a947a4"
 
         id = "55be246e-30a8-52ed-bc5f-507e63bbfe16"
     strings:
@@ -5603,7 +5573,7 @@ rule WEBSHELL_JSP_HTTP_Proxy
         filesize < 10KB and (
         $cjsp_short1 at 0 or
             any of ( $cjsp_long* ) or
-            ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+            $cjsp_short2 in ( filesize-100..filesize ) or
         (
             $cjsp_short2 and (
                 $cjsp_short1 in ( 0..1000 ) or
@@ -5623,9 +5593,9 @@ rule WEBSHELL_JSP_Writer_Nano
         reference = "Internal Research"
         score = 75
         date = "2021/01/24"
-        modified = "2024-12-09"
+        modified = "2023-04-05"
         hash = "ac91e5b9b9dcd373eaa9360a51aa661481ab9429"
-        sh = "c718c885b5d6e29161ee8ea0acadb6e53c556513"
+        hash = "c718c885b5d6e29161ee8ea0acadb6e53c556513"
         hash = "9f1df0249a6a491cdd5df598d83307338daa4c43"
         hash = "5e241d9d3a045d3ade7b6ff6af6c57b149fa356e"
 
@@ -5683,7 +5653,7 @@ rule WEBSHELL_JSP_Writer_Nano
         and (
         $cjsp_short1 at 0 or
             any of ( $cjsp_long* ) or
-            ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+            $cjsp_short2 in ( filesize-100..filesize ) or
         (
             $cjsp_short2 and (
                 $cjsp_short1 in ( 0..1000 ) or
@@ -5697,7 +5667,7 @@ rule WEBSHELL_JSP_Writer_Nano
             )
 }
 
-rule EXT_WEBSHELL_JSP_Generic_Tiny
+rule WEBSHELL_JSP_Generic_Tiny
 {
     meta:
         description = "Generic JSP webshell tiny"
@@ -5706,12 +5676,12 @@ rule EXT_WEBSHELL_JSP_Generic_Tiny
         reference = "Internal Research"
         score = 75
         date = "2021/01/07"
-        modified = "2024-12-16"
+        modified = "2023-04-05"
         hash = "8fd343db0442136e693e745d7af1018a99b042af"
         hash = "87c3ac9b75a72187e8bc6c61f50659435dbdc4fde6ed720cebb93881ba5989d8"
         hash = "1aa6af726137bf261849c05d18d0a630d95530588832aadd5101af28acc034b5"
 
-        id = "fad14524-de44-52ea-95e6-3e5de3138926"
+        id = "7535ade8-fc65-5558-a72c-cc14c3306390"
     strings:
         $payload1 = "ProcessBuilder" fullword wide ascii
         $payload2 = "URLClassLoader" fullword wide ascii
@@ -5733,7 +5703,7 @@ rule EXT_WEBSHELL_JSP_Generic_Tiny
         // JSF
         $cjsp_long3 = "/jstl/core" ascii wide
         $cjsp_long4 = "<%@p" nocase ascii wide
-        $cjsp_long5 = "<%@ " nocase asc wide
+        $cjsp_long5 = "<%@ " nocase ascii wide
         $cjsp_long6 = "<% " ascii wide
         $cjsp_long7 = "< %" ascii wide
 
@@ -5751,7 +5721,6 @@ rule EXT_WEBSHELL_JSP_Generic_Tiny
         // no web input but fixed command to create reverse shell
         $fixed_cmd1 = "bash -i >& /dev/" ascii wide
 
-        $fp1 = "Find Security Bugs is a plugin that aims to help security audit.</Details>"
     condition:
         //any of them or
         (
@@ -5763,7 +5732,7 @@ rule EXT_WEBSHELL_JSP_Generic_Tiny
         ) and (
             $cjsp_short1 at 0 or
             any of ( $cjsp_long* ) or
-            ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+            $cjsp_short2 in ( filesize-100..filesize ) or
         (
             $cjsp_short2 and (
                 $cjsp_short1 in ( 0..1000 ) or
@@ -5781,7 +5750,6 @@ rule EXT_WEBSHELL_JSP_Generic_Tiny
         )
         and
         ( 1 of ( $payload* ) or all of ( $payload_rt* ) )
-        and not any of ( $fp* )
 }
 
 rule WEBSHELL_JSP_Generic
@@ -5793,7 +5761,7 @@ rule WEBSHELL_JSP_Generic
         reference = "Internal Research"
         score = 75
         date = "2021/01/07"
-        modified = "2025-08-18"
+        modified = "2023-04-05"
         hash = "4762f36ca01fb9cda2ab559623d2206f401fc0b1"
         hash = "bdaf9279b3d9e07e955d0ce706d9c42e4bdf9aa1"
         hash = "ee9408eb923f2d16f606a5aaac7e16b009797a07"
@@ -5814,8 +5782,7 @@ rule WEBSHELL_JSP_Generic
         $fp1 = "command = \"cmd.exe /c set\";"
 
         //strings from private rule capa_bin_files
-        $dex1 = "dex\n0"
-        $dex2 = "dey\n0"
+        $dex   = { 64 65 ( 78 | 79 ) 0a 30 }
         $pack  = { 50 41 43 4b 00 00 00 02 00 }
 
         //strings from private rule capa_jsp_safe
@@ -5852,8 +5819,7 @@ rule WEBSHELL_JSP_Generic
     condition:
         filesize < 300KB and not (
         uint16(0) == 0x5a4d or
-        $dex1 at 0 or
-        $dex2 at 0 or
+        $dex at 0 or
         $pack at 0 or
         // fp on jar with zero compression
         uint16(0) == 0x4b50
@@ -5861,7 +5827,7 @@ rule WEBSHELL_JSP_Generic
         and (
         $cjsp_short1 at 0 or
             any of ( $cjsp_long* ) or
-            ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+            $cjsp_short2 in ( filesize-100..filesize ) or
         (
             $cjsp_short2 and (
                 $cjsp_short1 in ( 0..1000 ) or
@@ -5889,7 +5855,7 @@ rule WEBSHELL_JSP_Generic_Base64
         reference = "Internal Research"
         score = 75
         date = "2021/01/24"
-        modified = "2025-08-18"
+        modified = "2023-04-05"
         hash = "8b5fe53f8833df3657ae2eeafb4fd101c05f0db0"
         hash = "1b916afdd415dfa4e77cecf47321fd676ba2184d"
 
@@ -5931,15 +5897,14 @@ rule WEBSHELL_JSP_Generic_Base64
         $cjsp_long7 = "< %" ascii wide
 
         //strings from private rule capa_bin_files
-        $dex1 = "dex\n0"
-        $dex2 = "dey\n0"
+        $dex   = { 64 65 ( 78 | 79 ) 0a 30 }
         $pack  = { 50 41 43 4b 00 00 00 02 00 }
 
     condition:
         (
         $cjsp_short1 at 0 or
             any of ( $cjsp_long* ) or
-            ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+            $cjsp_short2 in ( filesize-100..filesize ) or
         (
             $cjsp_short2 and (
                 $cjsp_short1 in ( 0..1000 ) or
@@ -5949,8 +5914,7 @@ rule WEBSHELL_JSP_Generic_Base64
         )
         and not (
         uint16(0) == 0x5a4d or
-        $dex1 at 0 or
-        $dex2 at 0 or
+        $dex at 0 or
         $pack at 0 or
         // fp on jar with zero compression
         uint16(0) == 0x4b50
@@ -5964,7 +5928,7 @@ rule WEBSHELL_JSP_Generic_ProcessBuilder
     meta:
         description = "Generic JSP webshell which uses processbuilder to execute user input"
         license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
-        author = "Arnim Rupp (https://githubm/ruppde)"
+        author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
         score = 75
         date = "2021/01/07"
@@ -6007,7 +5971,7 @@ rule WEBSHELL_JSP_Generic_Reflection
         reference = "Internal Research"
         score = 75
         date = "2021/01/07"
-        modified = "2024-12-09"
+        modified = "2023-04-05"
         hash = "62e6c6065b5ca45819c1fc049518c81d7d165744"
         hash = "bf0ff88cbb72c719a291c722ae3115b91748d5c4920afe7a00a0d921d562e188"
 
@@ -6015,8 +5979,7 @@ rule WEBSHELL_JSP_Generic_Reflection
     strings:
         $ws_exec = "invoke" fullword wide ascii
         $ws_class = "Class" fullword wide ascii
-        $fp1 = "SOAPConnection"
-        $fp2 = "/CORBA/"
+        $fp = "SOAPConnection"
 
         //strings from private rule capa_jsp_safe
         $cjsp_short1 = "<%" ascii wide
@@ -6047,7 +6010,7 @@ rule WEBSHELL_JSP_Generic_Reflection
         all of ( $ws_* ) and (
         $cjsp_short1 at 0 or
             any of ( $cjsp_long* ) or
-            ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+            $cjsp_short2 in ( filesize-100..filesize ) or
         (
             $cjsp_short2 and (
                 $cjsp_short1 in ( 0..1000 ) or
@@ -6055,7 +6018,7 @@ rule WEBSHELL_JSP_Generic_Reflection
             )
         )
         )
-        and not any of ( $fp* ) and
+        and not $fp and
         (
             // either some kind of code input from the a web request ...
             filesize < 10KB and
@@ -6092,7 +6055,7 @@ rule WEBSHELL_JSP_Generic_Classloader
         score = 75
         hash = "6b546e78cc7821b63192bb8e087c133e8702a377d17baaeb64b13f0dd61e2347"
         date = "2021/01/07"
-        modified = "2024-12-09"
+        modified = "2023-04-05"
         hash = "f3a7e28e1c38fa5d37811bdda1d6b0893ab876023d3bd696747a35c04141dcf0"
         hash = "8ea2a25344e6094fa82dfc097bbec5f1675f6058f2b7560deb4390bcbce5a0e7"
         hash = "b9ea1e9f91c70160ee29151aa35f23c236d220c72709b2b75123e6fa1da5c86c"
@@ -6133,7 +6096,7 @@ rule WEBSHELL_JSP_Generic_Classloader
             (
                 $cjsp_short1 at 0 or
                     any of ( $cjsp_long* ) or
-                    ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+                    $cjsp_short2 in ( filesize-100..filesize ) or
                 (
                     $cjsp_short2 and (
                         $cjsp_short1 in ( 0..1000 ) or
@@ -6171,9 +6134,8 @@ rule WEBSHELL_JSP_Generic_Encoded_Shell
         score = 75
         date = "2021/01/07"
         modified = "2023-07-05"
-        hash = "3eecc354390d60878afaa67ab0802ce5805f3a9bb34e74dd8c363e3ca0ea5c"
+        hash = "3eecc354390d60878afaa67a20b0802ce5805f3a9bb34e74dd8c363e3ca0ea5c"
         hash = "f6c2112e3a25ec610b517ff481675b2ce893cb9f"
-        hash = "62e6c6065b5ca45819c1fc049518c81d7d165744"
 
         id = "359949d7-1793-5e13-9fdc-fe995ae12117"
     strings:
@@ -6198,7 +6160,7 @@ rule WEBSHELL_JSP_NetSpy
         reference = "Internal Research"
         score = 75
         date = "2021/01/24"
-        modified = "2024-12-09"
+        modified = "2023-04-05"
         hash = "94d1aaabde8ff9b4b8f394dc68caebf981c86587"
         hash = "3870b31f26975a7cb424eab6521fc9bffc2af580"
 
@@ -6242,7 +6204,7 @@ rule WEBSHELL_JSP_NetSpy
         filesize < 30KB and (
         $cjsp_short1 at 0 or
             any of ( $cjsp_long* ) or
-            ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+            $cjsp_short2 in ( filesize-100..filesize ) or
         (
             $cjsp_short2 and (
                 $cjsp_short1 in ( 0..1000 ) or
@@ -6266,13 +6228,13 @@ rule WEBSHELL_JSP_By_String
         reference = "Internal Research"
         score = 75
         date = "2021/01/09"
-        modified = "2025-08-18"
+        modified = "2023-04-05"
         hash = "e9060aa2caf96be49e3b6f490d08b8a996c4b084"
         hash = "4c2464503237beba54f66f4a099e7e75028707aa"
         hash = "06b42d4707e7326aff402ecbb585884863c6351a"
         hash = "dada47c052ec7fcf11d5cfb25693bc300d3df87de182a254f9b66c7c2c63bf2e"
         hash = "f9f6c696c1f90df6421cd9878a1dec51a62e91b4b4f7eac4920399cb39bc3139"
-        hash = "f1d836c92544cce301949e23aad6eb49049bacf9b7f54c24f89f7f02d214bb"
+        hash = "f1d8360dc92544cce301949e23aad6eb49049bacf9b7f54c24f89f7f02d214bb"
         hash = "1d1f26b1925a9d0caca3fdd8116629bbcf69f37f751a532b7096a1e37f4f0076"
         hash = "850f998753fde301d7c688b4eca784a045130039512cf51292fcb678187c560b"
 
@@ -6316,16 +6278,14 @@ rule WEBSHELL_JSP_By_String
         $cjsp_long7 = "< %" ascii wide
 
         //strings from private rule capa_bin_files
-        $dex1 = "dex\n0"
-        $dex2 = "dey\n0"
+        $dex   = { 64 65 ( 78 | 79 ) 0a 30 }
         $pack  = { 50 41 43 4b 00 00 00 02 00 }
 
     condition:
         //any of them or
         not (
             uint16(0) == 0x5a4d or
-            $dex1 at 0 or
-            $dex2 at 0 or
+            $dex at 0 or
             $pack at 0 or
             // fp on jar with zero compression
             uint16(0) == 0x4b50
@@ -6336,7 +6296,7 @@ rule WEBSHELL_JSP_By_String
                 (
                     $cjsp_short1 at 0 or
                     any of ( $cjsp_long* ) or
-                    ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+                    $cjsp_short2 in ( filesize-100..filesize ) or
                     (
                         $cjsp_short2 and (
                             $cjsp_short1 in ( 0..1000 ) or
@@ -6367,7 +6327,7 @@ rule WEBSHELL_JSP_Input_Upload_Write
         reference = "Internal Research"
         score = 75
         date = "2021/01/24"
-        modified = "2024-12-09"
+        modified = "2023-04-05"
         hash = "ef98ca135dfb9dcdd2f730b18e883adf50c4ab82"
         hash = "583231786bc1d0ecca7d8d2b083804736a3f0a32"
         hash = "19eca79163259d80375ebebbc440b9545163e6a3"
@@ -6405,7 +6365,7 @@ rule WEBSHELL_JSP_Input_Upload_Write
         filesize < 10KB and (
         $cjsp_short1 at 0 or
             any of ( $cjsp_long* ) or
-            ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+            $cjsp_short2 in ( filesize-100..filesize ) or
         (
             $cjsp_short2 and (
                 $cjsp_short1 in ( 0..1000 ) or
@@ -6427,7 +6387,7 @@ rule WEBSHELL_Generic_OS_Strings : FILE {
         author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
         date = "2021/01/12"
-        modified = "2024-12-09"
+        modified = "2023-07-05"
         score = 50
         hash = "d5bfe40283a28917fcda0cefd2af301f9a7ecdad"
         hash = "fd45a72bda0a38d5ad81371d68d206035cb71a14"
@@ -6470,7 +6430,7 @@ rule WEBSHELL_Generic_OS_Strings : FILE {
         // <%@ Page Language="Jscript" validateRequest="false" %>
         // <%@ Page Language = Jscript %>
         // <%@ Page Language="C#" %>
-        // <%@ Page Language="VB" ContentTe="text/html" validaterequest="false" AspCompat="true" Debug="true" %>
+        // <%@ Page Language="VB" ContentType="text/html" validaterequest="false" AspCompat="true" Debug="true" %>
         // <script runat="server" language="JScript">
         // <SCRIPT RUNAT=SERVER LANGUAGE=JSCRIPT>
         // <SCRIPT  RUNAT=SERVER  LANGUAGE=JSCRIPT>
@@ -6572,7 +6532,7 @@ rule WEBSHELL_Generic_OS_Strings : FILE {
         or (
         $cjsp_short1 at 0 or
             any of ( $cjsp_long* ) or
-            ($cjsp_short1 and $cjsp_short2 in ( filesize-100..filesize )) or
+            $cjsp_short2 in ( filesize-100..filesize ) or
         (
             $cjsp_short2 and (
                 $cjsp_short1 in ( 0..1000 ) or
@@ -6584,7 +6544,7 @@ rule WEBSHELL_Generic_OS_Strings : FILE {
             filesize < 300KB and
         not uint16(0) == 0x5a4d and (
             all of ( $w* ) or
-           ll of ( $l* ) or
+            all of ( $l* ) or
             2 of ( $take_two* )
         )
         )
@@ -6752,7 +6712,7 @@ rule WEBSHELL_In_Image
         $asp_multi_payload_three3 = ".Start" wide ascii
         // this is about "MSXML2.DOMDocument" but since that's easily obfuscated, lets not search for it
         $asp_multi_payload_four1 = "CreateObject" fullword nocase wide ascii
-        $asp_multiayload_four2 = "TransformNode" fullword nocase wide ascii
+        $asp_multi_payload_four2 = "TransformNode" fullword nocase wide ascii
         $asp_multi_payload_four3 = "loadxml" fullword nocase wide ascii
 
         // execute cmd.exe /c with arguments using ProcessStartInfo
@@ -6862,7 +6822,7 @@ rule WEBSHELL_Mixed_OBFUSC {
       date = "2023-01-28"
       modified = "2023-04-05"
       hash1 = "8c4e5c6bdfcc86fa27bdfb075a7c9a769423ec6d53b73c80cbc71a6f8dd5aace"
-      hash2 = "78f2086b6308315f5f0795aeaa75544128f14889a794205f5f7d7ca639335b"
+      hash2 = "78f2086b6308315f5f0795aeaa75544128f14889a794205f5fc97d7ca639335b"
       hash3 = "3bca764d44074820618e1c831449168f220121698a7c82e9909f8eab2e297cbd"
       hash4 = "b26b5e5cba45482f486ff7c75b54c90b7d1957fd8e272ddb4b2488ec65a2936e"
       hash5 = "e217be2c533bfddbbdb6dc6a628e0d8756a217c3ddc083894e07fd3a7408756c"
@@ -6905,4 +6865,87 @@ rule WEBSHELL_Cookie_Post_Obfuscation {
         $s3 = "Array"
     condition:
     ( uint16(0) == 0x3f3c and filesize < 100KB and ( all of them ))
+}
+
+rule PHP_Backdoor_HexEncoded_CommandExec
+{
+    meta:
+        description = "Detects PHP backdoor with hex-encoded command execution functions"
+        author = "Grok (xAI)"
+        date = "2025-03-13"
+        threat_level = "High"
+
+    strings:
+        // Hex-encoded function names from the original code
+        $func1 = "\\x73yste\\x6D"              // "system"
+        $func2 = "\\x73hell\\x5Fexe\\x63"      // "shell_exec"
+        $func3 = "\\x65\\x78ec"                // "exec"
+        $func4 = "p\\x61\\x73\\x73\\x74hru"    // "passthru"
+        $func5 = "p\\x6F\\x70e\\x6E"          // "popen"
+        $func6 = "\\x73\\x74rea\\x6D_\\x67e\\x74_\\x63\\x6F\\x6Et\\x65nts" // "stream_get_contents"
+        $func7 = "pcl\\x6F\\x73e"              // "pclose"
+
+        // Specific variables and patterns
+        $var1 = "$right_pad_string"            // Common variable prefix in the code
+        $post_param = "\\x70\\x6Fi\\x6E\\x74er" // "pointer" hex-encoded in POST
+        $hex_parser = "hex2bi\\x6E"            // "hex2bin" function
+
+        // Unique function pattern for XOR decoding
+        $xor_func = "function splitter_tool($hld,$token){  $element = '';    foreach(str_split($hld) as $char){$element.=chr(ord($char)^$token);} return$element;  }"
+
+    condition:
+        // Must have the XOR decoding function and at least 3 of the encoded functions
+        $xor_func and 3 of ($func*)
+        or
+        // Or combination of POST parameter, hex parser, and at least 2 functions
+        ($post_param and $hex_parser and 2 of ($func*))
+        or
+        // Or variable pattern with at least 4 encoded functions
+        ($var1 and 4 of ($func*))
+}
+
+rule SevinUnzipPHPScript {
+    meta:
+        description = "Detects Sevin-unzip PHP script with potential file upload and extraction vulnerabilities"
+        author = "Grok, xAI"
+        date = "2025-05-23"
+        severity = "High"
+        reference = "Web-based ZIP extractor with file upload and deletion functionality"
+
+    strings:
+        // HTML-related strings
+        $title = "<title>sevin-uzip</title>" nocase
+        $header = "<div id=\"header\">Sevin-unzip</div>" nocase
+        $form_action = "action=\"<?php echo $_SERVER['PHP_SELF']; ?>\" enctype=\"multipart/form-data\"" nocase
+        $password_field = "<input name=\"password\" type=\"password\" id=\"password\" class=\"password_01\" size=\"15\">" nocase
+        $submit_button = "<input class=\"Submit_01\" type=\"submit\" name=\"Submit\" value=\"\\xED\\x95\\xB4\\xEC\\xA0\\x9C\\xED\\x95\\x98\\xEA\\xB8\\xB0\">" nocase // UTF-8 encoded "해제하기"
+        $footer = "<div id=\"footer\">\\xC2\\xA9 2024 <a href=\"#\">sevin</a>" nocase // UTF-8 encoded "©"
+        $logo = "background-image: url(Zip_Images/Zip_Logo.png);" nocase
+
+        // PHP-specific strings
+        $php_password = "$password = \"123\";" nocase
+        $php_error_reporting = "error_reporting(E_ALL ^ E_NOTICE);" nocase
+        $php_zip_class = "class zip" nocase
+        $php_extract_function = "function Extract ( $zn, $to, $index = Array(-1) )" nocase
+        $php_file_upload = "start_unzip($_FILES[\\\"upfile\\\"][\\\"tmp_name\\\"], $_FILES[\\\"upfile\\\"][\\\"name\\\"], 1);" nocase
+        $php_delete_action = "elseif($_REQUEST[\\\"myaction\\\"]==\\\"dodelete\\\"):" nocase
+        $php_unlink = "@unlink($dfile[$i])" nocase
+        $php_zip_regex = "preg_match('/\\\\.zip$/mis',$file)" nocase // Escaped \. in regex
+
+        // JavaScript strings
+        $js_check_upload = "function check_uploadObject(form)" nocase
+        $js_alert = "alert('\\xEB\\xB9\\x84\\xEB\\xB0\\x80\\xEB\\xB2\\x88\\xED\\x98\\xB8\\xED\\x99\\x95\\xEC\\x9D\\xB8.');" nocase // UTF-8 encoded "비밀번호확인."
+        $js_selrev = "function selrev()" nocase
+
+        // Suspicious patterns
+        $suspicious_password_check = "if ($_POST[\\\"password\\\"] != $password) die(\\\"\\xEB\\xB9\\x84\\xEB\\xB0\\x80\\xEB\\xB2\\x88\\xED\\x98\\xB8\\xEC\\xA4\\x91 \\xEC\\x98\\xA4\\xEB\\xA5\\x98\\\");" nocase // Completed string with UTF-8 encoded Korean
+        $suspicious_file_handling = "if(is_file($upfile[\\\"tmp_name\\\"]))" nocase
+        $suspicious_dir_creation = "@mkdir($mydir,0777)" nocase
+
+    condition:
+        ($title or $header or $footer or $logo) and
+        ($form_action or $password_field or $submit_button) and
+        2 of ($php_*) and
+        1 of ($js_*) and
+        1 of ($suspicious_*)
 }
