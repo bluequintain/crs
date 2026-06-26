@@ -471,7 +471,7 @@ rule WEBSHELL_PHP_Generic_Callback
         $inp3 = /\(\s?\$_GET\s?\)/ wide ascii
         $inp4 = /_POST\s?\[/ wide ascii
         $inp5 = /\(\s?\$_POST\s?\)/ wide ascii
-      $inp6 = /_REQUEST\s?\[/ wide ascii
+        $inp6 = /_REQUEST\s?\[/ wide ascii
         $inp7 = /\(\s?\$_REQUEST\s?\)/ wide ascii
         // PHP automatically adds all the request headers into the $_SERVER global array, prefixing each header name by the "HTTP_" string, so e.g. @eval($_SERVER['HTTP_CMD']) will run any code in the HTTP header CMD
         $inp15 = "_SERVER['HTTP_" wide ascii
@@ -606,7 +606,7 @@ rule WEBSHELL_PHP_Generic_Callback
         $gen_much_sus36 = "Rootkit" wide ascii
         $gen_much_sus37 = "rootkit" wide ascii
         $gen_much_sus38 = "/*-/*-*/" wide ascii
-        $gen_much_s39 = "u\"+\"n\"+\"s" wide ascii
+        $gen_much_sus39 = "u\"+\"n\"+\"s" wide ascii
         $gen_much_sus40 = "\"e\"+\"v" wide ascii
         $gen_much_sus41 = "a\"+\"l\"" wide ascii
         $gen_much_sus42 = "\"+\"(\"+\"" wide ascii
@@ -716,7 +716,7 @@ rule WEBSHELL_PHP_Generic_Callback
 rule WEBSHELL_PHP_Base64_Encoded_Payloads : FILE {
     meta:
         description = "php webshell containing base64 encoded payload"
-        license = "Detection Rule License 1.1 hps://github.com/Neo23x0/signature-base/blob/master/LICENSE"
+        license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
         author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
         score = 75
@@ -916,7 +916,7 @@ rule WEBSHELL_PHP_Generic_Eval
         hash = "7ca5dec0515dd6f401cb5a52c313f41f5437fc43eb62ea4bcc415a14212d09e9"
         hash = "fd5f0f81204ca6ca6e93343500400d5853012e88254874fc9f62efe0fde7ab3c"
         hash = "883f48ed4e9646da078cabf6b8b4946d9f199660262502650f76450ecf60ddd5"
-        hash = "6d042b6393669bb4d98213091cabe554ab192a6c916c04d06cc2a4ca92c00"
+        hash = "6d042b6393669bb4d98213091cabe554ab192a6c916e86c04d06cc2a4ca92c00"
         hash = "dd5d8a9b4bb406e0b8f868165a1714fe54ffb18e621582210f96f6e5ae850b33"
 
 
@@ -1080,7 +1080,7 @@ rule WEBSHELL_PHP_OBFUSC
         $cpayload7 = /\bproc_open[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
         $cpayload8 = /\bpcntl_exec[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
         $cpayload9 = /\bassert[\n\t ]{0,500}\([^)0]/ nocase wide ascii
-        $cpayload10 = /\bpreg_replace[\n\t ]{0,500}\([^\)]{1,100}\/[ismxADSju]{0,11}(e|\\x65)/ nocase wide ascii
+        $cpayload10 = /\bpreg_replace[\n\t ]{0,500}\([^\)]{1,100}\/[ismxADSUXju]{0,11}(e|\\x65)/ nocase wide ascii
         $cpayload12 = /\bmb_ereg_replace[\t ]{0,500}\([^\)]{1,100}'e'/ nocase wide ascii
         $cpayload13 = /\bmb_eregi_replace[\t ]{0,500}\([^\)]{1,100}'e'/ nocase wide ascii
         $cpayload20 = /\bcreate_function[\n\t ]{0,500}(\([^)]|\/\*)/ nocase wide ascii
@@ -1180,7 +1180,7 @@ rule WEBSHELL_PHP_OBFUSC_Encoded
                 (
                         $php_short in (0..100) or
                         $php_short in (filesize-1000..filesize)
-              )
+                )
                 and not any of ( $no_* )
             )
             or any of ( $php_new* )
@@ -1355,7 +1355,7 @@ rule WEBSHELL_PHP_OBFUSC_Str_Replace
         modified = "2023-04-05"
         hash = "691305753e26884d0f930cda0fe5231c6437de94"
         hash = "7efd463aeb5bf0120dc5f963b62463211bd9e678"
-        hash = "fb655ddb90892e522ae1aaaf6cd8bde27a7ef"
+        hash = "fb655ddb90892e522ae1aaaf6cd8bde27a7f49ef"
         hash = "d1863aeca1a479462648d975773f795bb33a7af2"
         hash = "4d31d94b88e2bbd255cf501e178944425d40ee97"
         hash = "e1a2af3477d62a58f9e6431f5a4a123fb897ea80"
@@ -1554,7 +1554,7 @@ rule WEBSHELL_PHP_OBFUSC_3
 
         id = "f2017e6f-0623-53ff-aa26-a479f3a02024"
     strings:
-        $obf1 = "chr(" wide aii
+        $obf1 = "chr(" wide ascii
 
         //strings from private rule capa_php_old_safe
         $php_short = "<?" wide ascii
@@ -1613,7 +1613,7 @@ rule WEBSHELL_PHP_OBFUSC_3
         $cfp1 = /ob_start\(['\"]ob_gzhandler/ nocase wide ascii
         $cfp2 = "IWPML_Backend_Action_Loader" ascii wide
         $cfp3 = "<?phpclass WPML" ascii
-        $cfp4 = "      return implode(, "
+        $cfp4 = "      return implode('', "
 
         //strings from private rule capa_php_payload
         // \([^)] to avoid matching on e.g. eval() in comments
@@ -1766,7 +1766,7 @@ rule WEBSHELL_PHP_OBFUSC_3
         $gen_much_sus90 = "r00t" fullword wide ascii
         $gen_much_sus91 = "xp_cmdshell" fullword wide ascii
         $gen_much_sus92 = "base64_decode(base64_decode(" fullword wide ascii
-        $gen_much_sus9= "eval(\"/*" wide ascii
+        $gen_much_sus93 = "eval(\"/*" wide ascii
         $gen_much_sus94 = "=$_COOKIE;" wide ascii
 
         $gif = { 47 49 46 38 }
@@ -1902,7 +1902,7 @@ rule WEBSHELL_PHP_Includer_Tiny
         description = "Suspicious: Might be PHP webshell includer, check the included file"
         license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
         author = "Arnim Rupp (https://github.com/ruppde)"
-      reference = "Internal Research"
+        reference = "Internal Research"
         score = 75
         date = "2021/04/17"
         modified = "2023-07-05"
@@ -2064,7 +2064,7 @@ rule WEBSHELL_PHP_Dynamic_Big
 
         //strings from private rule capa_gen_sus
 
-        // these strings are just a bit suspicious, so several of them are needed, depending filesize
+        // these strings are just a bit suspicious, so several of them are needed, depending on filesize
         $gen_bit_sus1  = /:\s{0,20}eval}/ nocase wide ascii
         $gen_bit_sus2  = /\.replace\(\/\w\/g/ nocase wide ascii
         $gen_bit_sus6  = "self.delete"
@@ -2236,7 +2236,7 @@ rule WEBSHELL_PHP_Dynamic_Big
         )
         and (
             any of ( $new_php* ) or
-            $php_short at
+            $php_short at 0
         )
         and (
             any of ( $dynamic* )
@@ -2330,7 +2330,7 @@ rule WEBSHELL_PHP_Dynamic_Big
                     math.entropy(500, filesize-500) >= 7.7 and
                     // encoded text has a higher mean than text or code because it's missing the spaces and special chars with the low numbers
                     math.mean(500, filesize-500) > 120 and
-                    math.mean(500, filesize-5) < 136 and
+                    math.mean(500, filesize-500) < 136 and
                     // deviation of base64 is ~20 according to CyberChef_v9.21.0.html#recipe=Generate_Lorem_Ipsum(3,'Paragraphs')To_Base64('A-Za-z0-9%2B/%3D')To_Charcode('Space',10)Standard_Deviation('Space')
                     // lets take a bit more because it might not be pure base64 also include some xor, shift, replacement, ...
                     // 89 is the mean of the base64 chars
@@ -2496,7 +2496,7 @@ rule WEBSHELL_PHP_Generic_Backticks_OBFUSC
 
         id = "5ecb329f-0755-536d-8bfa-e36158474a0b"
     strings:
-         = /echo[\t ]{0,500}\(?`\$/ wide ascii
+        $s1 = /echo[\t ]{0,500}\(?`\$/ wide ascii
 
         //strings from private rule capa_php_old_safe
         $php_short = "<?" wide ascii
@@ -2671,7 +2671,7 @@ rule WEBSHELL_PHP_Strings_SUSP
         description = "typical webshell strings, suspicious"
         license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
         author = "Arnim Rupp (https://github.com/ruppde)"
-        reference = "Internal Resrch"
+        reference = "Internal Research"
         date = "2021/01/12"
         modified = "2023-07-05"
         score = 50
@@ -2763,7 +2763,7 @@ rule WEBSHELL_PHP_In_Htaccess
         score = 75
         date = "2021/01/07"
         modified = "2023-07-05"
-        hash = "c026d4512a32d93899d486f11d1e13b058a713"
+        hash = "c026d4512a32d93899d486c6f11d1e13b058a713"
         hash = "d79e9b13a32a9e9f3fa36aa1a4baf444bfd2599a"
         hash = "e1d1091fee6026829e037b2c70c228344955c263"
         hash = "c026d4512a32d93899d486c6f11d1e13b058a713"
@@ -2957,7 +2957,7 @@ rule WEBSHELL_ASP_Writer
 
         // classids for scripting host etc
         $tagasp_classid1 = "72C24DD5-D70A-438B-8A42-98424B88AFB8" nocase wide ascii
-      $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
+        $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid3 = "093FF999-1EA0-4079-9525-9614C3504B74" nocase wide ascii
         $tagasp_classid4 = "F935DC26-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid5 = "0D43FE01-F093-11CF-8940-00A0C9054228" nocase wide ascii
@@ -3051,7 +3051,7 @@ rule WEBSHELL_ASP_Writer
                     $tagasp_short1 in ( filesize-1000..filesize )
                 )
             )
-        ) a not (
+        ) and not (
             (
                 any of ( $perl* ) or
                 $php1 at 0 or
@@ -3238,7 +3238,7 @@ rule WEBSHELL_ASP_OBFUSC
         $m_multi_one1 = "Replace(" wide ascii
         $m_multi_one2 = "Len(" wide ascii
         $m_multi_one3 = "Mid(" wide ascii
-        $m_mul_one4 = "mid(" wide ascii
+        $m_multi_one4 = "mid(" wide ascii
         $m_multi_one5 = ".ToString(" wide ascii
 
         /*
@@ -3370,7 +3370,7 @@ rule WEBSHELL_ASP_Generic_Eval_On_Input
         description = "Generic ASP webshell which uses any eval/exec function directly on user input"
         license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
         author = "Arnim Rupp (https://github.com/ruppde)"
-        reference = "Internal search"
+        reference = "Internal Research"
         score = 75
         date = "2021/01/07"
         modified = "2023-04-05"
@@ -3559,7 +3559,8 @@ rule WEBSHELL_ASP_Nano
 
         // avoid hitting jsp
         $jsp1 = "=\"java." wide ascii
-        $jsp2 = "=\"javax." wide asc        $jsp3 = "java.lang." wide ascii
+        $jsp2 = "=\"javax." wide ascii
+        $jsp3 = "java.lang." wide ascii
         $jsp4 = "public" fullword wide ascii
         $jsp5 = "throws" fullword wide ascii
         $jsp6 = "getValue" fullword wide ascii
@@ -3748,7 +3749,7 @@ rule WEBSHELL_ASP_Encoded
         (
             any of ( $tagasp_long* ) or
             // TODO :  yara_push_private_rules.py doesn't do private rules in private rules yet
-          any of ( $tagasp_classid* ) or
+            any of ( $tagasp_classid* ) or
             (
                 $tagasp_short1 and
                 $tagasp_short2 in ( filesize-100..filesize )
@@ -3847,7 +3848,7 @@ rule WEBSHELL_ASP_Encoded_AspCoding
         $jsp2 = "=\"javax." wide ascii
         $jsp3 = "java.lang." wide ascii
         $jsp4 = "public" fullword wide ascii
-        $jsp5 = "throws" fullwo wide ascii
+        $jsp5 = "throws" fullword wide ascii
         $jsp6 = "getValue" fullword wide ascii
         $jsp7 = "getBytes" fullword wide ascii
 
@@ -4007,7 +4008,7 @@ rule WEBSHELL_ASP_By_String
         // <%@PAGE LANGUAGE=JSCRIPT%>
         // <%@ Page Language="Jscript" validateRequest="false" %>
         // <%@ Page Language = Jscript %>
-        // <%@ge Language="C#" %>
+        // <%@ Page Language="C#" %>
         // <%@ Page Language="VB" ContentType="text/html" validaterequest="false" AspCompat="true" Debug="true" %>
         // <script runat="server" language="JScript">
         // <SCRIPT RUNAT=SERVER LANGUAGE=JSCRIPT>
@@ -4223,7 +4224,7 @@ rule WEBSHELL_ASP_Generic_Tiny
         // also looking for %> to reduce fp (yeah, short atom but seldom since special chars)
         $tagasp_short2 = "%>" wide ascii
 
-        // classids for scripng host etc
+        // classids for scripting host etc
         $tagasp_classid1 = "72C24DD5-D70A-438B-8A42-98424B88AFB8" nocase wide ascii
         $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid3 = "093FF999-1EA0-4079-9525-9614C3504B74" nocase wide ascii
@@ -4313,7 +4314,7 @@ rule WEBSHELL_ASP_Generic_Tiny
         $asp_multi_payload_one1 = "CreateObject" nocase fullword wide ascii
         $asp_multi_payload_one2 = "addcode" fullword wide ascii
         $asp_multi_payload_one3 = /\.run\b/ wide ascii
-        $asp_multi_payload_two1 = "CreeInstanceFromVirtualPath" fullword wide ascii
+        $asp_multi_payload_two1 = "CreateInstanceFromVirtualPath" fullword wide ascii
         $asp_multi_payload_two2 = "ProcessRequest" fullword wide ascii
         $asp_multi_payload_two3 = "BuildManager" fullword wide ascii
         $asp_multi_payload_three1 = "System.Diagnostics" wide ascii
@@ -4504,7 +4505,7 @@ rule WEBSHELL_ASP_Generic : FILE {
 
         // classids for scripting host etc
         $tagasp_classid1 = "72C24DD5-D70A-438B-8A42-98424B88AFB8" nocase wide ascii
-        $tagasp_classid2 = "F935DC22-1CF0-11D0-B9-00C04FD58A0B" nocase wide ascii
+        $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid3 = "093FF999-1EA0-4079-9525-9614C3504B74" nocase wide ascii
         $tagasp_classid4 = "F935DC26-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid5 = "0D43FE01-F093-11CF-8940-00A0C9054228" nocase wide ascii
@@ -4594,7 +4595,7 @@ rule WEBSHELL_ASP_Generic : FILE {
         $asp_multi_payload_one3 = /\.run\b/ wide ascii
         $asp_multi_payload_two1 = "CreateInstanceFromVirtualPath" fullword wide ascii
         $asp_multi_payload_two2 = "ProcessRequest" fullword wide ascii
-        $asp_multi_payloadwo3 = "BuildManager" fullword wide ascii
+        $asp_multi_payload_two3 = "BuildManager" fullword wide ascii
         $asp_multi_payload_three1 = "System.Diagnostics" wide ascii
         $asp_multi_payload_three2 = "Process" fullword wide ascii
         $asp_multi_payload_three3 = "Start" fullword wide ascii
@@ -4790,7 +4791,7 @@ rule WEBSHELL_ASP_Generic_Registry_Reader
         $php2 = "<?="
 
         // avoid hitting jsp
-        $jsp1 "=\"java." wide ascii
+        $jsp1 = "=\"java." wide ascii
         $jsp2 = "=\"javax." wide ascii
         $jsp3 = "java.lang." wide ascii
         $jsp4 = "public" fullword wide ascii
@@ -4896,7 +4897,7 @@ rule WEBSHELL_ASPX_Regeorg_CSHARP
 
         // classids for scripting host etc
         $tagasp_classid1 = "72C24DD5-D70A-438B-8A42-98424B88AFB8" nocase wide ascii
-        $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide asi
+        $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid3 = "093FF999-1EA0-4079-9525-9614C3504B74" nocase wide ascii
         $tagasp_classid4 = "F935DC26-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid5 = "0D43FE01-F093-11CF-8940-00A0C9054228" nocase wide ascii
@@ -5099,7 +5100,7 @@ rule WEBSHELL_ASP_Runtime_Compile : FILE {
         hash = "bd75ac9a1d1f6bcb9a2c82b13ea28c0238360b3a7be909b2ed19d3c96e519d3d"
         hash = "e44058dd1f08405e59d411d37d2ebc3253e2140385fa2023f9457474031b48ee"
         hash = "f6092ab5c8d491ae43c9e1838c5fd79480055033b081945d16ff0f1aaf25e6c7"
-        hash = "dfd30139e66cba45b2ad679c357a1e2f565e6140a17e36e29a1e5839e87c5e"
+        hash = "dfd30139e66cba45b2ad679c357a1e2f565e6b3140a17e36e29a1e5839e87c5e"
         hash = "89eac7423dbf86eb0b443d8dd14252b4208e7462ac2971c99f257876388fccf2"
         hash = "8ce4eaf111c66c2e6c08a271d849204832713f8b66aceb5dadc293b818ccca9e"
         id = "5da9318d-f542-5603-a111-5b240f566d47"
@@ -5197,7 +5198,7 @@ rule WEBSHELL_ASP_SQL
         hash = "216c1dd950e0718e35bc4834c5abdc2229de3612"
         hash = "ffe44e9985d381261a6e80f55770833e4b78424bn"
         hash = "3d7cd32d53abc7f39faed133e0a8f95a09932b64"
-        hash = "f19cc178f1cfad8601f5eea2352cdbd2d64e7e"
+        hash = "f19cc178f1cfad8601f5eea2352cdbd2d6f94e7e"
         hash = "cafc4ede15270ab3f53f007c66e82627a39f4d0f"
 
         id = "e534dcb9-40ab-544f-ae55-89fb21c422e9"
@@ -5403,7 +5404,7 @@ rule WEBSHELL_ASP_Scan_Writable
         // also looking for %> to reduce fp (yeah, short atom but seldom since special chars)
         $tagasp_short2 = "%>" wide ascii
 
-        // classids for scripting hostc
+        // classids for scripting host etc
         $tagasp_classid1 = "72C24DD5-D70A-438B-8A42-98424B88AFB8" nocase wide ascii
         $tagasp_classid2 = "F935DC22-1CF0-11D0-ADB9-00C04FD58A0B" nocase wide ascii
         $tagasp_classid3 = "093FF999-1EA0-4079-9525-9614C3504B74" nocase wide ascii
@@ -5625,7 +5626,7 @@ rule WEBSHELL_JSP_Writer_Nano
         date = "2021/01/24"
         modified = "2024-12-09"
         hash = "ac91e5b9b9dcd373eaa9360a51aa661481ab9429"
-        sh = "c718c885b5d6e29161ee8ea0acadb6e53c556513"
+        hash = "c718c885b5d6e29161ee8ea0acadb6e53c556513"
         hash = "9f1df0249a6a491cdd5df598d83307338daa4c43"
         hash = "5e241d9d3a045d3ade7b6ff6af6c57b149fa356e"
 
@@ -5733,7 +5734,7 @@ rule EXT_WEBSHELL_JSP_Generic_Tiny
         // JSF
         $cjsp_long3 = "/jstl/core" ascii wide
         $cjsp_long4 = "<%@p" nocase ascii wide
-        $cjsp_long5 = "<%@ " nocase asc wide
+        $cjsp_long5 = "<%@ " nocase ascii wide
         $cjsp_long6 = "<% " ascii wide
         $cjsp_long7 = "< %" ascii wide
 
@@ -5964,7 +5965,7 @@ rule WEBSHELL_JSP_Generic_ProcessBuilder
     meta:
         description = "Generic JSP webshell which uses processbuilder to execute user input"
         license = "Detection Rule License 1.1 https://github.com/Neo23x0/signature-base/blob/master/LICENSE"
-        author = "Arnim Rupp (https://githubm/ruppde)"
+        author = "Arnim Rupp (https://github.com/ruppde)"
         reference = "Internal Research"
         score = 75
         date = "2021/01/07"
@@ -6171,7 +6172,7 @@ rule WEBSHELL_JSP_Generic_Encoded_Shell
         score = 75
         date = "2021/01/07"
         modified = "2023-07-05"
-        hash = "3eecc354390d60878afaa67ab0802ce5805f3a9bb34e74dd8c363e3ca0ea5c"
+        hash = "3eecc354390d60878afaa67a20b0802ce5805f3a9bb34e74dd8c363e3ca0ea5c"
         hash = "f6c2112e3a25ec610b517ff481675b2ce893cb9f"
         hash = "62e6c6065b5ca45819c1fc049518c81d7d165744"
 
@@ -6272,7 +6273,7 @@ rule WEBSHELL_JSP_By_String
         hash = "06b42d4707e7326aff402ecbb585884863c6351a"
         hash = "dada47c052ec7fcf11d5cfb25693bc300d3df87de182a254f9b66c7c2c63bf2e"
         hash = "f9f6c696c1f90df6421cd9878a1dec51a62e91b4b4f7eac4920399cb39bc3139"
-        hash = "f1d836c92544cce301949e23aad6eb49049bacf9b7f54c24f89f7f02d214bb"
+        hash = "f1d8360dc92544cce301949e23aad6eb49049bacf9b7f54c24f89f7f02d214bb"
         hash = "1d1f26b1925a9d0caca3fdd8116629bbcf69f37f751a532b7096a1e37f4f0076"
         hash = "850f998753fde301d7c688b4eca784a045130039512cf51292fcb678187c560b"
 
@@ -6470,7 +6471,7 @@ rule WEBSHELL_Generic_OS_Strings : FILE {
         // <%@ Page Language="Jscript" validateRequest="false" %>
         // <%@ Page Language = Jscript %>
         // <%@ Page Language="C#" %>
-        // <%@ Page Language="VB" ContentTe="text/html" validaterequest="false" AspCompat="true" Debug="true" %>
+        // <%@ Page Language="VB" ContentType="text/html" validaterequest="false" AspCompat="true" Debug="true" %>
         // <script runat="server" language="JScript">
         // <SCRIPT RUNAT=SERVER LANGUAGE=JSCRIPT>
         // <SCRIPT  RUNAT=SERVER  LANGUAGE=JSCRIPT>
@@ -6584,7 +6585,7 @@ rule WEBSHELL_Generic_OS_Strings : FILE {
             filesize < 300KB and
         not uint16(0) == 0x5a4d and (
             all of ( $w* ) or
-           ll of ( $l* ) or
+            all of ( $l* ) or
             2 of ( $take_two* )
         )
         )
@@ -6752,7 +6753,7 @@ rule WEBSHELL_In_Image
         $asp_multi_payload_three3 = ".Start" wide ascii
         // this is about "MSXML2.DOMDocument" but since that's easily obfuscated, lets not search for it
         $asp_multi_payload_four1 = "CreateObject" fullword nocase wide ascii
-        $asp_multiayload_four2 = "TransformNode" fullword nocase wide ascii
+        $asp_multi_payload_four2 = "TransformNode" fullword nocase wide ascii
         $asp_multi_payload_four3 = "loadxml" fullword nocase wide ascii
 
         // execute cmd.exe /c with arguments using ProcessStartInfo
@@ -6862,7 +6863,7 @@ rule WEBSHELL_Mixed_OBFUSC {
       date = "2023-01-28"
       modified = "2023-04-05"
       hash1 = "8c4e5c6bdfcc86fa27bdfb075a7c9a769423ec6d53b73c80cbc71a6f8dd5aace"
-      hash2 = "78f2086b6308315f5f0795aeaa75544128f14889a794205f5f7d7ca639335b"
+      hash2 = "78f2086b6308315f5f0795aeaa75544128f14889a794205f5fc97d7ca639335b"
       hash3 = "3bca764d44074820618e1c831449168f220121698a7c82e9909f8eab2e297cbd"
       hash4 = "b26b5e5cba45482f486ff7c75b54c90b7d1957fd8e272ddb4b2488ec65a2936e"
       hash5 = "e217be2c533bfddbbdb6dc6a628e0d8756a217c3ddc083894e07fd3a7408756c"
